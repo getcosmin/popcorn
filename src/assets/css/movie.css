@@ -1,0 +1,19 @@
+:root {
+    --spacing-01: 0.8rem;
+    --spacing-02: 1.6rem;
+    --spacing-03: 2.4rem;
+    --spacing-04: 3.2rem;
+    --spacing-05: 4.0rem;
+    --spacing-06: 4.8rem;
+    --spacing-07: 5.6rem;
+    --spacing-08: 6.4rem;
+}
+body {
+    margin: 0;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-02);
+}
