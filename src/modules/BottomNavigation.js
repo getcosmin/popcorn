@@ -1,19 +1,101 @@
-export default function BottomNavigation() {
+import {useEffect, useState} from 'react'
+import iconHome from './images/icon-home'
+import iconFlux from './images/icon-flux'
+import iconBell from './images/icon-bell'
+import BottomNavButton from './components/bottom--nav-button'
+import { Link } from 'react-router-dom'
+import useLocalStorage from '../hooks/useLocalStorage'
+
+export default function BottomNavigation(props) {
+    const [home, setHome] = useState({
+        src: iconHome,
+        title: 'Home',
+        isEnabled: false
+    })
+    const [flux, setFlux] = useState({
+        src: iconFlux,
+        title: 'Flux',
+        isEnabled: false
+    })
+    const [notification, setNotifications] = useState({
+        src: iconBell,
+        title: 'Notifications',
+        isEnabled: false
+    })
+
+
+    const [buttonActive, setButtonActive] = useLocalStorage('buttonActive', '')
+    
+    const changePath = () => { 
+        setTimeout(() => {
+            setButtonActive(value => value = window.location.pathname)
+        }, 100)
+     }
+
+     useEffect(() => {
+        changePath()
+     }, [])
+
+    useEffect(() => {
+        console.log(buttonActive)
+        if (buttonActive === '/') {
+            setHome(prevValue => prevValue = {...prevValue, isEnabled: true })
+            setFlux(prevValue => prevValue = {...prevValue, isEnabled: false })
+            setNotifications(prevValue => prevValue = {...prevValue, isEnabled: false })
+        }
+        if (buttonActive === '/Flux' || buttonActive === '/flux') {
+            setHome(prevValue => prevValue = {...prevValue, isEnabled: false })
+            setFlux(prevValue => prevValue = {...prevValue, isEnabled: true })
+            setNotifications(prevValue => prevValue = {...prevValue, isEnabled: false })
+        }
+        if (buttonActive === '/Notifications' || buttonActive === '/notifications') {
+            setHome(prevValue => prevValue = {...prevValue, isEnabled: false })
+            setFlux(prevValue => prevValue = {...prevValue, isEnabled: false })
+            setNotifications(prevValue => prevValue = {...prevValue, isEnabled: true })
+        }
+    }, [buttonActive])
+    // REFACTOR -- Toggles with UseEffect to render once button state changes 
+
+    // TOGGLE Flux 
+
     return(
         <div className='bottom-navigation'>
-            <div className='navigation-button'>
-                <svg className='navigation-icon' width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M0 1v22h24v-22h-24zm4 20h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2v-2h2v2zm14 
-                        16h-12v-8h12v8zm0-10h-12v-8h12v8zm4 10h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2v-2h2v2z"/>
-                </svg>
-                <span className='navigation-text'>Feed</span>
-            </div>
-            <div className='navigation-button'>
-                <svg className='navigation-icon' width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M0 1v22h24v-22h-24zm4 20h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2v-2h2v2zm14 
-                        16h-12v-8h12v8zm0-10h-12v-8h12v8zm4 10h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2v-2h2v2z"/>
-                </svg>
-                <span className='navigation-text'>All Shows</span>
+            <div className='bottom-navigation-ui wrapper'>
+                <Link to='/' onClick={changePath}>
+                    <BottomNavButton 
+                        button = {{
+                            title: home.title,
+                            isEnabled: home.isEnabled,
+                            icon: home.src,
+                        }}
+                    />
+                </Link>
+                <Link to='/Flux' onClick={changePath}>
+                <BottomNavButton 
+                    button = {{
+                        title: flux.title,
+                        isEnabled: flux.isEnabled,
+                        icon: flux.src,
+                    }}
+                />
+                </Link>
+                <Link to='/Notifications' onClick={changePath}>
+                <BottomNavButton 
+                    button = {{
+                        title: notification.title,
+                        isEnabled: notification.isEnabled,
+                        icon: notification.src,
+                    }}
+                />
+                </Link>
+            <button className='navigation-button' onClick={props.switch}>
+                <div className='toggle'>
+                    <div className='toggle-body'>
+                        <div className='toggle-button'></div>
+                    </div>
+                </div>
+                <span className='navigation-text'>Light Mode</span>
+            </button>
             </div>
         </div>
     )

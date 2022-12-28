@@ -1,10 +1,13 @@
+import { render } from "@testing-library/react";
 import { useEffect, useState } from "react";
 import PopcornLogo from './components/popcorn-logo'
+import MovieDisplay from './MovieDisplay'
 
 export default function Navigation() {
  
     const [movieResults, setMovieResults] = useState([])
     const [value, setValue] = useState('')
+    const [movie, setMovie] = useState('')
 
     function expandMenu() {
         const searchMenu = document.querySelector('.movie-results');
@@ -15,7 +18,39 @@ export default function Navigation() {
         const searchMenu = document.querySelector('.movie-results');
         searchMenu.classList.remove('showResults')
 
+    }   
+
+    class POPCORN {
+        constructor(id) {
+            this.id = id;
+        }
+        openMovie() {
+            
+        }
     }
+
+    // GET MOVIE ID
+    useEffect(() => {
+        const selectMovieList = document.querySelector('.movie-list');
+        selectMovieList.addEventListener('click', event => {
+            const targetedMovie = event.target.id;
+            setValue('')
+
+            getMovie()
+
+            async function getMovie() {
+                const movie = await fetch(`https://api.tvmaze.com/shows/${targetedMovie}`)
+                const movieData = await movie.json()
+  
+                // RENDER COMPONENT with Movie
+                render(
+                    <MovieDisplay {...movieData}/>
+                )
+
+            }
+
+        } )
+    }, []) 
 
 
     async function getData() {
@@ -62,10 +97,9 @@ export default function Navigation() {
                     </svg>
                     <input 
                         className='search-input' 
-                        type='search'
+                        type='text'
                         onChange= {(event) => setValue(event.target.value)}
-                        value = {value}
-                    
+                        value = {value}            
                     />
                 </div>
                 <div className='navbar-search-menu'>
@@ -74,6 +108,7 @@ export default function Navigation() {
                         {movieResults.map(movie => {
                             if(movie.image !== null) {
                                 return  <div className='movie-item'>
+                                            <div className='movie-cover' id={movie.id} ></div>
                                             <img className='movie-result-image' src={movie.image.original}></img>
                                             <div>
                                                 <span className='movie-result-name'>{movie.name}</span>
@@ -82,6 +117,7 @@ export default function Navigation() {
                                         </div>
                             } else {
                                 return  <div className='movie-item'>
+                                            <div className='movie-cover' id={movie.id} ></div>
                                             <div className='movie-result-image'></div>
                                             <div>
                                                 <span className='movie-result-name'>{movie.name}</span>
