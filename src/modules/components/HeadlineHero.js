@@ -1,7 +1,7 @@
 export default function HeroImage() {
     return (
+
         <section className='hero'>
-            <div className='gradient'></div>
             <div className='hero-body'>
                 <header className='hero-headline'>
                     <div>
@@ -10,7 +10,8 @@ export default function HeroImage() {
                     </div>
                 </header>
             </div>
-            <img className='hero-poster' src='https://getcosmin.dev/assets/other/hbo-house-of-the-dragon.webp'></img> 
+            <img className='hero-poster' src='https://getcosmin.dev/assets/other/hbo-house-of-the-dragon.webp' alt='House of the Dragon'></img> 
         </section>
+
     )
 }

@@ -45,7 +45,10 @@
     stroke: var(--color-text-secondary);
 }
 [data-active='true'] {
-    stroke: var(--color-text-secondary);
+    stroke: none;
+    fill: var(--color-text-secondary);
+}
+.button-icon {
     fill: var(--color-text-secondary);
 }
 .background {
@@ -126,15 +129,17 @@ button {
     width: 24vw;
     fill: var(--color-accent);
 }
-.gradient {
-    position: absolute;
-    z-index: 1;
-    height: 10vh;
-    left: 0;
-    width: 100vw;
-    background-image: linear-gradient(rgba(13, 15, 18, 0.01), rgba(13, 15, 18, 0.08), rgba(13, 15, 18, 0.2), rgba(13, 15, 18, 0.4),rgba(13, 15, 18, 0.6), rgba(13, 15, 18, 0.8), #0d0f12, #0d0f12);
-    transform: rotate(180deg);
-    margin-top: -4px;
+.close-display {
+    height: var(--icon-size-medium);
+    width: auto;
+    fill: var(--color-text-secondary);
+}
+.botline { 
+    stroke: none;
+    fill: var(--color-text-secondary);
+}
+.mr00 {
+    margin-right: 0;
 }
 /* -------------------- 
 NAVBAR
@@ -150,6 +155,7 @@ NAVBAR
     width: 100%;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 /* -------------------- 
@@ -157,29 +163,26 @@ CARD Scroller
 -------------------- */
 
 .card {
-    background-color: var(--color-background-02);
-    border-radius: 0.8rem;
     scroll-snap-align: start;
-    min-width: min(320px, 80%);
-    border: 1px solid var(--color-border);
+    min-width: min(288px, 80%);
 }
 .card-image {
-    border-radius: 0.8rem 0.8rem 0 0;
+    border-radius: 0.8rem;
     width: 100%;
-    height: 344px;
-    object-fit: fill;
+    height: auto;
 }
 .card-header {
     width: 100%;
 }
 .card-scroll-frame {
-
-    margin-left: var(--spacing-02);
     display: flex;
-    gap: var(--spacing-01);
+    gap: var(--spacing-02);
     overflow-x: scroll;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
+}
+.card-scroll-frame::-webkit-scrollbar {
+    display: none;
 }
 .card-body {
     padding: var(--spacing-02);
@@ -200,7 +203,7 @@ CARD Scroller
     border-radius: 3rem;
     width: max-content;
 }
-.card-list-genres {
+.card-list-genres, .display-genres {
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-01);
@@ -245,14 +248,18 @@ BOTTOM Navigation
     display: flex;
     justify-content: space-between;
 }
+.bottom-navigation-link {
+    text-decoration: none;
+}
 .navigation-icon {
     transition: 300ms;
-    height: var(--icon-size-huge);
-    width: var(--icon-size-huge);
+    height: var(--icon-size-large);
+    width: var(--icon-size-large);
 }
 .navigation-text {
     color: var(--color-text-secondary);
 }
+
 .navigation-button {
     display: flex;
     gap: var(--spacing-01);
@@ -260,13 +267,13 @@ BOTTOM Navigation
     flex-direction: column;
 }
 .toggle {
-    height: var(--icon-size-huge);
+    height: var(--icon-size-large);
     display: flex;
     align-items: center;
 }
 .toggle-body {
     height: var(--icon-size-small);
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--color-text-secondary);
     width: var(--icon-size-huge);
     border-radius: 3rem;
     display: flex;
@@ -282,8 +289,8 @@ BOTTOM Navigation
 .showResults {
     position: absolute;
     background-color: var(--color-background-01);
-    height: 100vh;
     width: 100vw;
+    min-height: 100vh;
     left: 0px;
     top: 64px;
     z-index: 10;
@@ -301,7 +308,6 @@ BOTTOM Navigation
     width: 100%;
     height: 64px;
     position: absolute;
-    margin-top: var(--spacing-01);
 }
 /* -------------------- 
 HERO Image
@@ -317,6 +323,7 @@ HERO Image
 .hero-subtitle {
     text-align: center;
 }
+
 .hero-poster {
     height: auto;
     width: 100vw;
@@ -329,7 +336,6 @@ HERO Image
     color: var(--color-text);
     z-index: 1;
     grid-area: 2 / 1;
-    background-image: linear-gradient(rgba(13, 15, 18, 0.01), rgba(13, 15, 18, 0.08), rgba(13, 15, 18, 0.2), rgba(13, 15, 18, 0.6),rgba(13, 15, 18, 0.8), #0d0f12, #0d0f12);
 }
 .hero-headline {
     height: 100%;
@@ -338,13 +344,15 @@ HERO Image
     justify-content: center;
     align-items: flex-end;
 }
+.headline-center {
+    text-align: center;
+}
 .movie-item {
     display: flex;
-    gap: var(--spacing-01);
+    gap: var(--spacing-02);
 }
 .movie-result-image {
     background-image: var(--color-border);
-    width: 128px;
     height: 64px;
     object-fit: cover;
 }
@@ -357,8 +365,9 @@ HERO Image
 .movie-list {
     display: flex;
     flex-wrap: nowrap;
-    gap: var(--spacing-01);
+    gap: var(--spacing-02);
     flex-direction: column;
+    padding-bottom: var(--spacing-05);
 }
 /* -------------------- 
 FOOTER
@@ -399,14 +408,66 @@ DISPLAY Movies
 -------------------- */
 
 .display-hero {
-    height: 60vh;
     width: 100vw;
     position: relative;
-    z-index: -1;
+    z-index: 100;
     grid-area: 1 / 1;
 }
 
 .display-nav {
     display: flex;
     justify-content: space-between;
+}
+.display-headline {
+    margin: var(--spacing-02) 0;
+}
+.display-title {
+    margin-block-start: var(--spacing-01);
+}
+/* -------------------- 
+FLUX Movies
+-------------------- */
+
+.flux-movies {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-01);
+}
+.flux-movie-img {
+    border-radius: var(--spacing-01);
+    width: 100%;
+    height: auto;
+}
+.filter {
+    margin-top: var(--spacing-02);
+    margin-bottom: var(--spacing-02);
+    display: flex;
+    justify-content: space-between;
+}
+
+/* -------------------- 
+DESKTOP CSS
+-------------------- */
+
+@media (min-width: 1024px) {
+    .carousel-navigation {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        width: -webkit-fill-available;
+    }
+    .carousel-nav-button {
+        background-color: rgba(13, 15, 18, 0.4);
+        height: 432px;
+        width: max(4vw, 64px);
+    }
+    .carousel-nav-icon {
+        fill: var(--color-text);
+        height: var(--icon-size-huge);
+        width: auto;
+    }
+    .card {
+        --card-number: 6;    
+        min-width: calc(100% / var(--card-number) - var(--card-number) * var(--spacing-01));
+    }
 }

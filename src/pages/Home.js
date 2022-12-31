@@ -1,9 +1,6 @@
 
 import Carousel from '../modules/Carousel'
-import BottomNavigation from '../modules/BottomNavigation'
-import HeroImage from '../modules//components/HeroImage'
-import useLocalStorage from '../hooks/useLocalStorage'
-import Footer from '../modules/Footer'
+import HeroImage from '../modules//components/HeadlineHero'
 
 export default function Home() {
 

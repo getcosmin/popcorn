@@ -1,137 +1,97 @@
-import { render } from "@testing-library/react";
-import { useEffect, useState } from "react";
-import PopcornLogo from './components/popcorn-logo'
-import MovieDisplay from './MovieDisplay'
+import { useEffect, useState } from 'react'
+import PopcornLogo from './images/popcorn-logo'
+import iconSearch from './images/icon-search'
+import MovieItemResult from './components/element-component/MovieItemResult'
+import MovieDisplayModule from '../modules/MovieDisplayModule'
+import { createPortal } from 'react-dom'
+
 
 export default function Navigation() {
- 
+    const [movieTitle, setMovieTitle] = useState('')
+    const [movieDisplay, showMovieDisplay] = useState(false)
     const [movieResults, setMovieResults] = useState([])
-    const [value, setValue] = useState('')
-    const [movie, setMovie] = useState('')
-
-    function expandMenu() {
-        const searchMenu = document.querySelector('.movie-results');
-        searchMenu.classList.add('showResults')
-
-    }
-    function closeMenu() {
-        const searchMenu = document.querySelector('.movie-results');
-        searchMenu.classList.remove('showResults')
-
-    }   
-
-    class POPCORN {
-        constructor(id) {
-            this.id = id;
-        }
-        openMovie() {
-            
-        }
+    const [movieID, setMovieID] = useState([])
+    const API_LINK = 'https://api.themoviedb.org/3/search/movie?api_key=350845626c05bcf9e670b1135deffe7b&language=en-US&query=';
+    console.log(movieTitle)
+    function searchMovieTitle(event) {
+      setMovieTitle(event.target.value)
     }
 
-    // GET MOVIE ID
-    useEffect(() => {
-        const selectMovieList = document.querySelector('.movie-list');
-        selectMovieList.addEventListener('click', event => {
-            const targetedMovie = event.target.id;
-            setValue('')
-
-            getMovie()
-
-            async function getMovie() {
-                const movie = await fetch(`https://api.tvmaze.com/shows/${targetedMovie}`)
-                const movieData = await movie.json()
-  
-                // RENDER COMPONENT with Movie
-                render(
-                    <MovieDisplay {...movieData}/>
-                )
-
-            }
-
-        } )
-    }, []) 
-
-
-    async function getData() {
-        try{
-            console.log(`Searching... term used: https://api.tvmaze.com/search/shows?q=${value}`)
-            const searchResults = await fetch(`https://api.tvmaze.com/search/shows?q=${value}`)
-            const searchData = await searchResults.json();
-                
-            for (let i = 0; i < searchData.length; i++) {
-                setMovieResults(prevResult => [...prevResult, searchData[i].show])        
-            }
-        }   catch(error) {
-                console.log(error)
-            }
+    function openDisplay(event) {
+      setMovieID([event.target.id])
+      setMovieTitle('')
+      setMovieResults([])
+      showMovieDisplay(true)
     }
 
     useEffect(() => {
-        if(value.length > 0) {
-            setMovieResults([])
-            getData()
-            expandMenu()
-        } else {
-            setMovieResults([])
-            closeMenu()
-        }               
-    }, [value])
+      const movieContainer = document.querySelector('.movie-results')
+      movieContainer.addEventListener('click', openDisplay)
+    }, [])
+
+    useEffect(() => {
+      if (movieTitle.length > 0) {
+        try {
+          fetchMovies()
+          async function fetchMovies() {
+            const response = await fetch(`${API_LINK}${movieTitle}`);
+            const data = await response.json();
+
+            setMovieResults(data.results)
+
+            console.log(movieResults)
+          }
+        } catch(error) {
+          console.log(error)
+        }
+      } else {
+        setMovieResults([])
+      }
+    }, [movieTitle])
+
+    const changeState = () => {
+      showMovieDisplay(false)
+    }
 
     return(
+      <>
+        {movieDisplay && createPortal(<MovieDisplayModule movieID={movieID} closeDisplayWindow={changeState}/>, document.body)}
 
         <nav className='navbar'>
-            <div className='navbar-container wrapper flex gap-01'>
-                <div className='navbar-brand'>
-                    <PopcornLogo />
-
-                </div>
-                <div className='search-box'>
-                    <svg className='search-icon'width="24" height="24" viewBox="0 0 24 24">
-                        <path d="M23.809 21.646l-6.205-6.205c1.167-1.605 
-                        1.857-3.579 1.857-5.711 0-5.365-4.365-9.73-9.731-9.73-5.365 
-                        0-9.73 4.365-9.73 9.73 0 5.366 4.365 9.73 9.73 9.73 2.034 0 
-                        3.923-.627 5.487-1.698l6.238 6.238 2.354-2.354zm-20.955-11.916c0-3.792 
-                        3.085-6.877 6.877-6.877s6.877 3.085 6.877 6.877-3.085 6.877-6.877 6.877c-3.793 
-                        0-6.877-3.085-6.877-6.877z"/>
-                    </svg>
-                    <input 
-                        className='search-input' 
-                        type='text'
-                        onChange= {(event) => setValue(event.target.value)}
-                        value = {value}            
-                    />
-                </div>
-                <div className='navbar-search-menu'>
-                <div className='movie-results'>
-                    <div className='movie-list'>
-                        {movieResults.map(movie => {
-                            if(movie.image !== null) {
-                                return  <div className='movie-item'>
-                                            <div className='movie-cover' id={movie.id} ></div>
-                                            <img className='movie-result-image' src={movie.image.original}></img>
-                                            <div>
-                                                <span className='movie-result-name'>{movie.name}</span>
-                                                <span>{movie.premiered !== null ? movie.premiered.slice(0, 4) : ''}</span>
-                                            </div>
-                                        </div>
-                            } else {
-                                return  <div className='movie-item'>
-                                            <div className='movie-cover' id={movie.id} ></div>
-                                            <div className='movie-result-image'></div>
-                                            <div>
-                                                <span className='movie-result-name'>{movie.name}</span>
-                                                <span>{movie.premiered !== null ? movie.premiered.slice(0, 4) : ''}</span>
-                                            </div>
-                                        </div>
-                            }
-                        })}
-                    </div>
-                </div>
-                </div>
+          <div className='navbar-container wrapper flex gap-01'>
+            <div className='navbar-brand'>
+              <PopcornLogo/>
             </div>
+            <div className='search-box'>
+              {iconSearch}
+              <input 
+                className='search-input' 
+                type='text'
+                onChange= {searchMovieTitle}
+                value = {movieTitle}            
+              />
+            </div>
+            <div className='navbar-search-menu'>
+              <div className='movie-results'>
+                <div className='movie-list wrapper'>
+                  {movieResults !== [] ?
+                    movieResults.map(movie => {
+                      if (movie.backdrop_path !== null)
+                        return (
+                          <MovieItemResult
+                            key = {movie.id}
+                            {...movie}
+                          />
+                        )
+                      })
+                    : null
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
         </nav>
-
+      </>
     )
 }
 

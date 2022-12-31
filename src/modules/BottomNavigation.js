@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import iconHome from './images/icon-home'
 import iconFlux from './images/icon-flux'
 import iconBell from './images/icon-bell'
-import BottomNavButton from './components/bottom--nav-button'
+import BottomNavButton from './components/element-component/BottomNavigationButton'
 import { Link } from 'react-router-dom'
 import useLocalStorage from '../hooks/useLocalStorage'
 
@@ -61,7 +61,7 @@ export default function BottomNavigation(props) {
     return(
         <div className='bottom-navigation'>
             <div className='bottom-navigation-ui wrapper'>
-                <Link to='/' onClick={changePath}>
+                <Link className='bottom-navigation-link' to='/' onClick={changePath}>
                     <BottomNavButton 
                         button = {{
                             title: home.title,
@@ -70,32 +70,32 @@ export default function BottomNavigation(props) {
                         }}
                     />
                 </Link>
-                <Link to='/Flux' onClick={changePath}>
-                <BottomNavButton 
-                    button = {{
-                        title: flux.title,
-                        isEnabled: flux.isEnabled,
-                        icon: flux.src,
+                <Link className='bottom-navigation-link' to='/Flux' onClick={changePath}>
+                    <BottomNavButton 
+                        button = {{
+                            title: flux.title,
+                            isEnabled: flux.isEnabled,
+                            icon: flux.src,
                     }}
                 />
                 </Link>
-                <Link to='/Notifications' onClick={changePath}>
-                <BottomNavButton 
-                    button = {{
-                        title: notification.title,
-                        isEnabled: notification.isEnabled,
-                        icon: notification.src,
+                <Link className='bottom-navigation-link' to='/Notifications' onClick={changePath}>
+                    <BottomNavButton 
+                        button = {{
+                            title: notification.title,
+                            isEnabled: notification.isEnabled,
+                            icon: notification.src,
                     }}
                 />
                 </Link>
-            <button className='navigation-button' onClick={props.switch}>
-                <div className='toggle'>
-                    <div className='toggle-body'>
-                        <div className='toggle-button'></div>
+                <button className='navigation-button' onClick={props.switch}>
+                    <div className='toggle'>
+                        <div className='toggle-body'>
+                            <span className='toggle-button'></span>
+                        </div>
                     </div>
-                </div>
-                <span className='navigation-text'>Light Mode</span>
-            </button>
+                    <span className='navigation-text'>Light Mode</span>
+                </button>
             </div>
         </div>
     )

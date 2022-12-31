@@ -6,13 +6,26 @@ import Navigation from './modules/Navigation'
 import BottomNavigation from './modules/BottomNavigation'
 import Footer from './modules/Footer'
 import './assets/css/movie.css';
-
 import useLocalStorage from './hooks/useLocalStorage'
-
 import './assets/css/movie.css';
 import { useEffect } from 'react'
+import MovieDisplay from './modules/MovieDisplay'
+
 
 export default function App() {
+
+  useEffect(() => {
+    console.log('closed')
+    const bottomLinks = document.querySelectorAll('.bottom-navigation-link')
+    bottomLinks.forEach(element => element.addEventListener('click', closeMovieDisplay))
+
+    function closeMovieDisplay() {
+      if (document.querySelector('.display') !== null) {
+        const displayWindow = document.querySelector('.display').parentElement
+        displayWindow.remove()
+      }    
+    }
+  }, [])
 
   const [theme, setTheme] = useLocalStorage('theme', 'light')
 
