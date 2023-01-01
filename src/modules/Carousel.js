@@ -1,11 +1,13 @@
 import { useState } from "react";
 import SmallCard from './components/element-component/SmallCard'
+import SkeletonSmallCard from "./skeleton/SkeletonSmallCard";
 import CarouselNavigation from './components/element-component/CarouselNavigation'
 import HeadlineM from './components/HeadlineM'
 
 export default function Carousel(props) {
     
     const [movies, setMovies] = useState([])
+    const [skeleton, setSkeleton] = useState(true)
 
     const listShows = async () => {
         try {
@@ -13,12 +15,12 @@ export default function Carousel(props) {
             const data = await response.json()
     
             setMovies(data.results)    
+            disableSkeleton(false)
 
         } catch (error) {
             console.log(error)
         }      
     }
-
 
     const renderMovies = movies.map(movie => {
         return (
@@ -29,20 +31,30 @@ export default function Carousel(props) {
         )
     })    
 
+    function disableSkeleton() {
+        setSkeleton(false)
+    }
+
+    const cards = ['1','2','3','4','5','6']
+
     listShows()
  
     return(
         <section className='carousel'>
-            <div className='wrapper mr00'>
+            <div className='carousel-container wrapper mr00 card-container'>
                 <HeadlineM
                     content = {{
                         title: props.title
                     }}
                  />
-
-                { window.innerWidth > 1024 ? <CarouselNavigation/> : null }
-           
+                
+                { skeleton? <div className='card-scroll-frame'> { cards.map(card => <SkeletonSmallCard/>) }</div> : null}
+        
                 <div className='card-scroll-frame'>
+                { window.innerWidth > 1024 ? <CarouselNavigation/> : null }
+
+
+
                     {renderMovies}
                 </div>
             </div>

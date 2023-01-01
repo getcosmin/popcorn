@@ -100,6 +100,8 @@ button {
     border: none;
 }
 .line {
+    display: flex;
+    align-items: center;
     padding-left: var(--spacing-02);
 }
 .line::before {
@@ -168,13 +170,22 @@ CARD Scroller
 }
 .card-image {
     border-radius: 0.8rem;
+    cursor: pointer;
     width: 100%;
     height: auto;
+}
+.card-image-placeholder {
+    background-color: var(--color-text-secondary);
+    border-radius: var(--spacing-01);
+    opacity: 0.1;
+    aspect-ratio: 2 / 3;
 }
 .card-header {
     width: 100%;
 }
 .card-scroll-frame {
+    grid-area: 2/1;
+    scroll-behavior: smooth;
     display: flex;
     gap: var(--spacing-02);
     overflow-x: scroll;
@@ -450,15 +461,19 @@ DESKTOP CSS
 -------------------- */
 
 @media (min-width: 1024px) {
+    .carousel-container {
+        display: grid;
+    }
     .carousel-navigation {
         position: absolute;
-        display: flex;
-        justify-content: space-between;
-        width: -webkit-fill-available;
+        width: calc(100vw - var(--spacing-02));
+        left: 0px;
     }
     .carousel-nav-button {
+        position: absolute;
+        z-index: 100;
         background-color: rgba(13, 15, 18, 0.4);
-        height: 432px;
+        height: var(--button-height);
         width: max(4vw, 64px);
     }
     .carousel-nav-icon {
@@ -466,8 +481,17 @@ DESKTOP CSS
         height: var(--icon-size-huge);
         width: auto;
     }
+    .carousel-nav-icon:hover {
+        transition: 200ms;
+        transform: scale(1.2);
+    }
+    .carousel-nav-button:nth-child(2) {
+        right: 0px;
+    }
     .card {
+        transition: 600ms;
+        min-width: auto;
         --card-number: 6;    
-        min-width: calc(100% / var(--card-number) - var(--card-number) * var(--spacing-01));
+        flex: 0 0 calc(100% / var(--card-number) - var(--spacing-02));
     }
 }
