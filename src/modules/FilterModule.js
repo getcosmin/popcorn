@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom'
 
 import iconSort from "../modules/images/icon-sort"
 import iconFilter from "../modules/images/icon-filter"
-import ModalFilter from './components/ModalFilter'
+import PageFilter from './components/PageFilter'
 
 export default function FilterModule({genres, movieFilter, filterMovies}) {
 
@@ -16,22 +16,27 @@ export default function FilterModule({genres, movieFilter, filterMovies}) {
     return(
         <>
             { isFilterEnabled && createPortal (
-                <ModalFilter    genres = {genres} 
-                                movieFilter = {movieFilter} 
-                                filterMovies={filterMovies}
-                                toggleFilter = {showFilters}
+                <PageFilter genres = {genres} 
+                            movieFilter = {movieFilter} 
+                            filterMovies = {filterMovies}
+                            toggleFilter = {showFilters}
                 />
-                                , document.body) }
+                , document.body) }
 
-            <div className='filter'>
+            <div className='filter wrapper'>
                 <button className='button-sort'>
-                    <svg className='button-icon' width='32' height='32'>
-                        {iconSort}
+                    <svg className='button-icon button-round' width='48' height='48' viewBox="0 0 48 48">
+                        <rect x="12" y="16" width="24" height="2" rx="0.4"></rect>
+                        <rect x="12" y="24" width="16" height="2" rx="0.4"></rect>
+                        <rect x="12" y="32" width="24" height="2" rx="0.4"></rect>
                     </svg>
                 </button>
                 <button className='button-filter' onClick={showFilters}>
-                    <svg className='button-icon' width='32' height='32'>
-                        {iconFilter}
+                    <svg className='button-icon button-round' width='48' height='48' viewBox="0 0 48 48">
+                        <rect x="14" y="14" width="8" height="8" rx="0.4"></rect>
+                        <rect x="26" y="14" width="8" height="8" rx="0.4"></rect>
+                        <rect x="14" y="26" width="8" height="8" rx="0.4"></rect>
+                        <rect x="26" y="26" width="8" height="8" rx="0.4"></rect>
                     </svg>
                 </button>
             </div>

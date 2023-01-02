@@ -136,14 +136,10 @@ button {
     fill: var(--color-accent);
 }
 .close-display {
-    background-color: var(--color-side-10);
-    border: 1px solid var(--color-border);
-    padding: var(--spacing-01);
-    margin-right: calc(-1 * var(--spacing-01) /2 );
-    border-radius: 3rem;
-    height: var(--icon-size-small);
-    width: auto;
-    fill: var(--color-text-secondary);
+    z-index: 1000;
+    position: absolute;
+    top: var(--spacing-04);
+    right: var(--spacing-06);
 }
 .vertical {
     transform: rotate(90deg);
@@ -159,6 +155,15 @@ button {
     height: var(--icon-size-small);
     width: var(--icon-size-small);
 }
+.button-primary {
+    margin-top: var(--spacing-04);
+    width: 100%;
+    border-radius: 0.4rem;
+    padding: 1.6rem 2.4rem;
+    color: #fff;
+    background-color: var(--color-accent);
+}
+
 .botline { 
     stroke: none;
     fill: var(--color-text-secondary);
@@ -283,7 +288,7 @@ FILTER
 .filter-page {
     position: absolute;
     top: 0px;
-    width: 100vw;
+    width: -webkit-fill-available;
     min-height: 100vh;
     background-color: var(--color-background-01);
     z-index: 10;
@@ -376,7 +381,7 @@ BOTTOM Navigation
     position: absolute;
     background-color: var(--color-background-01);
     min-height: 100vh;
-    width: 100vw;
+    width: -webkit-fill-available;
     left: 0px;
     top: 0;
     z-index: 10;
@@ -545,9 +550,6 @@ DESKTOP CSS
         width: calc(100vw - var(--spacing-02));
         left: 0px;
     }
-    .close-display {
-        height: var(--icon-size-medium);
-    }
     .carousel-nav-button {
         position: absolute;
         z-index: 100;
@@ -603,7 +605,7 @@ DESKTOP CSS
     .card {
         transition: 600ms;
         min-width: auto;
-        --card-number: 6;    
+        --card-number: 8;    
         flex: 0 0 calc(100% / var(--card-number) - var(--spacing-02));
     }
     .flux-movies {
@@ -657,12 +659,4 @@ DESKTOP CSS
     border: 1px solid var(--color-accent);
     color: var(--color-accent);
     background-color: rgb(230, 64, 64, 0.1);
-}
-.primary-button {
-    margin-top: var(--spacing-04);
-    width: 100%;
-    border-radius: 0.4rem;
-    padding: 1.6rem 2.4rem;
-    color: #fff;
-    background-color: var(--color-accent);
 }

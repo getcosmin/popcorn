@@ -1,20 +1,20 @@
 
-import Carousel from '../modules/Carousel'
-import HeroImage from '../modules//components/HeadlineHero'
+import DisplayCarousel from '../modules/DisplayCarousel'
+import DisplayHero from '../modules/DisplayHero'
 
 export default function Home() {
 
   return (
     <>
 
-        <HeroImage />
+        <DisplayHero />
 
-        <Carousel 
+        <DisplayCarousel
           genre = {'Science-Fiction'}
           title = {'SciFi'}
         />
 
-        <Carousel 
+        <DisplayCarousel
           genre = {'Comedy'}
           title = {'Comedy'}
         />

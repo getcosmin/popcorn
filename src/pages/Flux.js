@@ -1,18 +1,19 @@
-import HeroMedium from '../modules/HeroMedium'
-import FluxLandscape from '../modules/FluxLandscape'
+import DisplayHeroMedium from '../modules/DisplayHeroMedium'
+import DisplayFluxLandscape from '../modules/DisplayFluxLandscape'
 import useFetch from '../hooks/useFetch'
 import { useEffect, useState } from 'react'
 import FilterModule from '../modules/FilterModule'
 import useFetchGenres from '../hooks/useFetchGenres'
 
 export default function Flux() {
-    const [filterMovie, setMovieFilter] = useState(null);
+    const [movieFilter, setMovieFilter] = useState(null);
+    const [currentMovies, setCurrentMovies] = useState([])
     const API_LINK = 'https://api.themoviedb.org/3/';
     const API_KEY = '350845626c05bcf9e670b1135deffe7b'
 
+    const data = (useFetch(`${API_LINK}discover/movie?api_key=${API_KEY}`))
 
-    const data = useFetch(`${API_LINK}discover/movie?api_key=${API_KEY}`)
-
+    useEffect(() => { setCurrentMovies(data) }, [data])
 
     const genreList = useFetchGenres('https://api.themoviedb.org/3/genre/movie/list?api_key=350845626c05bcf9e670b1135deffe7b')
    
@@ -23,26 +24,34 @@ export default function Flux() {
     function filterMovies() {
         fetchMovies()
         async function fetchMovies() {
-            const response = await fetch(`${API_LINK}discover/movie?api_key=${API_KEY}&with_genres=${filterMovie}`)
+            const response = await fetch(`${API_LINK}discover/movie?api_key=${API_KEY}&with_genres=${movieFilter}`)
             const data = await response.json();
 
-            console.log(data)
+            setCurrentMovies(data.results)
         }
+
     }
+
+    console.log(currentMovies)
 
     return (
 
         <>
-            <HeroMedium
+            <DisplayHeroMedium
                 content = {{
                     title: 'Flux',
-                    subtitle: 'Discover new movies.'
+                    subtitle: 'Discover your favorite movies.'
                 }}
             />
-            { genreList[0] !== undefined ?  <FilterModule genres = {genreList} movieFilter = {addMovieFilter} filterMovies={filterMovies}/> : console.log('Loading Genres...')}
+            { genreList[0] !== undefined ?  
+                <FilterModule   genres = {genreList} 
+                                movieFilter = {addMovieFilter} 
+                                filterMovies={filterMovies}
+                /> 
+                : null}
 
             
-            { data[0] !== undefined ? <FluxLandscape movies = {data}/> : console.log('Loading Movies...')}
+            { currentMovies[0] !== undefined ? <DisplayFluxLandscape movies = {currentMovies} movieCategory = {movieFilter}/> : console.log('Loading Movies...')}
             
     
 

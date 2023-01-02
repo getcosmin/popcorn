@@ -6,7 +6,7 @@ export default function MovieList(movies, title) {
     return(
         <section>
 
-            <HeadlineM  title = 'All Movies' />
+            <HeadlineM  title = 'Movies' />
             
             <div className='wrapper'>
 

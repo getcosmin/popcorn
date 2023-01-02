@@ -2,7 +2,7 @@ import { useState } from "react";
 import SmallCard from './components/element-component/SmallCard'
 import SkeletonSmallCard from "./skeleton/SkeletonSmallCard";
 import CarouselNavigation from './components/element-component/CarouselNavigation'
-import HeadlineM from './components/HeadlineM'
+import HeadlineSmall from './components/HeadlineSmall'
 
 export default function Carousel(props) {
     
@@ -35,7 +35,7 @@ export default function Carousel(props) {
         setSkeleton(false)
     }
 
-    const cards = ['1','2','3','4','5','6']
+    const cards = ['1','2','3','4','5','6','7','8']
 
     listShows()
  
@@ -43,7 +43,7 @@ export default function Carousel(props) {
         <section className='carousel'>
             <div className='carousel-container wrapper mr00 card-container'>
                 
-                <HeadlineM  title = {props.title} />
+                <HeadlineSmall  title = {props.title} />
                 
                 { skeleton? <div className='card-scroll-frame'> { cards.map(card => <SkeletonSmallCard/>) }</div> : null}
         

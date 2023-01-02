@@ -1,11 +1,11 @@
-import HeadlineM from "./components/HeadlineM";
+import HeadlineSmall from "./components/HeadlineSmall";
 import MovieLandscape from './components/MovieLandscape'
 
 export default function FluxLandscape({movies}) {
 
     return(
         <section>
-            <HeadlineM  title = 'All Movies' />
+            <HeadlineSmall  title = 'Movies' />
 
 
             <div className='wrapper'>

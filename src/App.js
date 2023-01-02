@@ -3,13 +3,12 @@ import Home from './pages/Home'
 import Flux from './pages/Flux'
 import Notifications from './pages/Notifications'
 import Navigation from './modules/Navigation'
-import BottomNavigation from './modules/BottomNavigation'
+import NavigationBottom from './modules/NavigationBottom'
 import Footer from './modules/Footer'
 import './assets/css/movie.css';
 import useLocalStorage from './hooks/useLocalStorage'
 import './assets/css/movie.css';
 import { useEffect } from 'react'
-import MovieDisplay from './modules/MovieDisplay'
 
 
 export default function App() {
@@ -45,7 +44,7 @@ export default function App() {
         <Route path='/notifications' element = { <Notifications />} />
       </Routes>
 
-      <BottomNavigation 
+      <NavigationBottom 
         switch = {switchTheme}
       />
 

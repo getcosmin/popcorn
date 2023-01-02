@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import PopcornLogo from './images/popcorn-logo'
 import iconSearch from './images/icon-search'
 import MovieItemResult from './components/element-component/MovieItemResult'
-import MovieDisplayModule from '../modules/MovieDisplayModule'
+import MovieDisplayModule from './DisplayMovie'
 import { createPortal } from 'react-dom'
 
 
