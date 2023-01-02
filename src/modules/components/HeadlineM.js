@@ -1,8 +1,8 @@
-export default function HeadlineM({content}) {
+export default function HeadlineM({title}) {
     return(
 
         <header className='wrapper line'>
-            <h2>{content.title}</h2>
+            <h2>{title}</h2>
         </header>
         
     )

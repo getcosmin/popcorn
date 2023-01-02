@@ -58,18 +58,21 @@ export default function Navigation() {
         {movieDisplay && createPortal(<MovieDisplayModule movieID={movieID} closeDisplayWindow={changeState}/>, document.body)}
 
         <nav className='navbar'>
-          <div className='navbar-container wrapper flex gap-01'>
-            <div className='navbar-brand'>
-              <PopcornLogo/>
-            </div>
-            <div className='search-box'>
-              {iconSearch}
-              <input 
-                className='search-input' 
-                type='text'
-                onChange= {searchMovieTitle}
-                value = {movieTitle}            
-              />
+          <div className='wrapper'>
+            <div className='navbar-container flex gap-01'>
+              <div className='navbar-brand'>
+                <PopcornLogo/>
+              </div>
+              <div className='search-box'>
+                {iconSearch}
+                <input 
+                  className='search-input' 
+                  placeholder='Search for a title...'
+                  type='text'
+                  onChange= {searchMovieTitle}
+                 value = {movieTitle}            
+                />
+              </div>
             </div>
             <div className='navbar-search-menu'>
               <div className='movie-results'>

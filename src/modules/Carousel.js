@@ -42,20 +42,17 @@ export default function Carousel(props) {
     return(
         <section className='carousel'>
             <div className='carousel-container wrapper mr00 card-container'>
-                <HeadlineM
-                    content = {{
-                        title: props.title
-                    }}
-                 />
+                
+                <HeadlineM  title = {props.title} />
                 
                 { skeleton? <div className='card-scroll-frame'> { cards.map(card => <SkeletonSmallCard/>) }</div> : null}
         
                 <div className='card-scroll-frame'>
+                    
                 { window.innerWidth > 1024 ? <CarouselNavigation/> : null }
 
-
-
                     {renderMovies}
+
                 </div>
             </div>
         </section>

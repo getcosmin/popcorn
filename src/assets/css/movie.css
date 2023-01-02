@@ -9,11 +9,12 @@
     --spacing-08: 6.4rem;
 
     --color-text: #e3e5e8;
+    --color-side: rgba(255, 255, 255, 0.1);
     --color-text-secondary: #abb1b7;
     --color-background-01: #0d0f12;
     --color-background-02: #171a1e;
     --color-border: #434d5a;
-    --color-accent: #e64040;
+    --color-accent: rgb(230, 64, 64);
 
     --title-h1: clamp(4rem,4rem + 1vw,9.6rem);
     --title-h2: clamp(2rem,2rem + 1vw,3.2rem);
@@ -83,6 +84,7 @@ span {
     font-size: 1.4rem;
 }
 p {
+    line-height: var(--text-line-height);
     font-size: 1.6rem;
 }
 span, p, .card-genres, .footer-list-item {
@@ -129,12 +131,33 @@ button {
 }
 .popcorn {
     width: 24vw;
+    position: relative;
+    z-index: 10000;
     fill: var(--color-accent);
 }
 .close-display {
-    height: var(--icon-size-medium);
+    background-color: var(--color-side-10);
+    border: 1px solid var(--color-border);
+    padding: var(--spacing-01);
+    margin-right: calc(-1 * var(--spacing-01) /2 );
+    border-radius: 3rem;
+    height: var(--icon-size-small);
     width: auto;
     fill: var(--color-text-secondary);
+}
+.vertical {
+    transform: rotate(90deg);
+    transform-origin: center;
+}
+
+.button-round {
+    fill: var(--color-text-secondary);
+    background-color: var(--color-side-10);
+    border: 1px solid var(--color-border);
+    padding: var(--spacing-01);
+    border-radius: 3rem;
+    height: var(--icon-size-small);
+    width: var(--icon-size-small);
 }
 .botline { 
     stroke: none;
@@ -143,15 +166,24 @@ button {
 .mr00 {
     margin-right: 0;
 }
+.pill-container {
+    display: flex;
+    gap: var(--spacing-01);
+    overflow-x: scroll;
+}
+.pill {
+    white-space: nowrap;
+    height: min-content;
+    border-radius: 3rem;
+    padding: var(--pill-padding);
+    border: 1px solid var(--color-background-02);
+}
 /* -------------------- 
 NAVBAR
 -------------------- */
 .navbar {
     padding-top: var(--spacing-02);
     margin-bottom: var(--spacing-02);
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-02);
 }
 .navbar-container {
     width: 100%;
@@ -159,7 +191,9 @@ NAVBAR
     align-items: center;
     flex-wrap: wrap;
 }
-
+.navbar-search-menu {
+    margin-top: var(--spacing-04);
+}
 /* -------------------- 
 CARD Scroller
 -------------------- */
@@ -242,6 +276,38 @@ CARD Scroller
     border-radius: 3rem;
     height: 2.4rem;
 }
+/* -------------------- 
+FILTER
+-------------------- */
+
+.filter-page {
+    position: absolute;
+    top: 0px;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: var(--color-background-01);
+    z-index: 10;
+    padding-top: 10vh;
+}
+.filter-page-nav {
+    display: flex;
+    justify-content: space-between;
+}
+.genres-list[data-type='false'] {
+    display: none;
+}
+.genres-list[data-type='true'] {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-02);
+}
+
+.genre-option {
+    border: 1px solid var(--color-border);
+    padding: 1.6rem;
+    text-align: center;
+    border-radius: 0.4rem;
+}
 
 /* -------------------- 
 BOTTOM Navigation
@@ -312,7 +378,7 @@ BOTTOM Navigation
     min-height: 100vh;
     width: 100vw;
     left: 0px;
-    top: 64px;
+    top: 0;
     z-index: 10;
 }
 .movie-cover {
@@ -329,7 +395,7 @@ HERO Image
     display: grid;
     grid-template-rows: 35vh 25vh;
     justify-content: center;
-    margin-block: var(--spacing-04);
+    margin-block: 0 var(--spacing-04);
 }
 .hero-subtitle {
     text-align: center;
@@ -417,17 +483,27 @@ FOOTER
 /* -------------------- 
 DISPLAY Movies
 -------------------- */
-
+.movie-cinema {
+    overflow: hidden;
+    height: 225px;
+    display: flex;
+    align-items: center;
+}
 .display-hero {
     width: 100vw;
     position: relative;
     z-index: 100;
+    scale: 1.4;
     grid-area: 1 / 1;
 }
 
 .display-nav {
-    display: flex;
-    justify-content: space-between;
+    margin-top: -2.4rem;
+    top: var(--spacing-05);
+    z-index: 100;
+    position: absolute;
+    z-index: 100;
+    right: 0;
 }
 .display-headline {
     margin: var(--spacing-02) 0;
@@ -469,6 +545,9 @@ DESKTOP CSS
         width: calc(100vw - var(--spacing-02));
         left: 0px;
     }
+    .close-display {
+        height: var(--icon-size-medium);
+    }
     .carousel-nav-button {
         position: absolute;
         z-index: 100;
@@ -485,8 +564,41 @@ DESKTOP CSS
         transition: 200ms;
         transform: scale(1.2);
     }
+    .carousel-nav-button:nth-child(1) {
+        left: var(--spacing-05)
+    }
     .carousel-nav-button:nth-child(2) {
-        right: 0px;
+        right: var(--spacing-05)
+    }
+    .navbar {
+        padding-top: var(--spacing-05);
+    }
+    .popcorn {
+        width: auto;
+        height: 2.8vh;
+    }
+    .display {
+        display: grid;
+        grid-template-columns: 100%;
+    }
+    .display-nav {
+        top: var(--spacing-04);
+    }
+    .display-headline {
+        width: 32vw;
+        position: relative;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        grid-area: 1/1;
+    }
+    .movie-cinema {
+        grid-area: 1/1;
+    }
+    .movie-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--spacing-03);
     }
     .card {
         transition: 600ms;
@@ -494,4 +606,63 @@ DESKTOP CSS
         --card-number: 6;    
         flex: 0 0 calc(100% / var(--card-number) - var(--spacing-02));
     }
+    .flux-movies {
+        grid-template-columns: repeat(10, 1fr);
+    }
+    .flux-landscape {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--spacing-02);
+    }
+    .landscape-header, .landscape-image {
+        grid-area: 1/1;
+    }
+    .landscape-header {
+        padding: 0 var(--spacing-02);
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: end;
+        flex-wrap: wrap;
+        border-radius: var(--spacing-01);
+        background-image: linear-gradient(transparent 20%,
+                                        rgb(0 0 0 / 5%) 30%,
+                                        rgb(0 0 0 / 10%) 40%, 
+                                        rgb(0 0 0 / 20%) 50%, 
+                                        rgb(0 0 0 / 40%) 60%, 
+                                        rgb(0 0 0 / 70%) 70%, 
+                                        rgb(0 0 0 / 90%) 80%, 
+                                        rgb(0 0 0 / 100%) 90%, 
+                                        rgb(0 0 0 / 100%) 100%
+                                        );
+    }
+    .movie-landscape-card {
+        display: grid;
+
+    }
+    .wrapper {
+        margin: 0 var(--spacing-06);
+    }
+    .movie-cinema {
+        overflow: hidden;
+        height: 100vh;
+    }
+    .genres-list[data-type='true'] {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+.genre-active {
+    transition: 600ms;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    background-color: rgb(230, 64, 64, 0.1);
+}
+.primary-button {
+    margin-top: var(--spacing-04);
+    width: 100%;
+    border-radius: 0.4rem;
+    padding: 1.6rem 2.4rem;
+    color: #fff;
+    background-color: var(--color-accent);
 }

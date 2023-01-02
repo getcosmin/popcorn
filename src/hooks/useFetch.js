@@ -15,9 +15,7 @@ export default function useFetch(link) {
                 
                 setData(received.results)
 
-                console.log(data.results)
-
-                return { data }
+                return data
                
             } catch(error) {
     
@@ -25,8 +23,7 @@ export default function useFetch(link) {
             }
         }
     }
-    , [])
-
-    return { data }
+    , [])   
+    return data
 }
 
