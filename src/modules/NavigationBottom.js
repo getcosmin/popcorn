@@ -1,9 +1,14 @@
+// 00 - React
 import {useEffect, useState} from 'react'
+import { Link } from 'react-router-dom'
+
+// 01 - Components
+import BottomNavButton from './components/element-component/BottomNavigationButton'
 import iconHome from './images/icon-home'
 import iconFlux from './images/icon-flux'
 import iconBell from './images/icon-bell'
-import BottomNavButton from './components/element-component/BottomNavigationButton'
-import { Link } from 'react-router-dom'
+
+// 02 - Custom Hooks
 import useLocalStorage from '../hooks/useLocalStorage'
 
 export default function BottomNavigation(props) {

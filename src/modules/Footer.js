@@ -1,3 +1,4 @@
+// 00 - React
 import { useState } from "react"
 
 export default function Footer() {

@@ -1,5 +1,5 @@
 export default function RatingBadge(rating) {
-    return(
+    return (
         <div className='card-review'>
             <svg className='card-rating' viewBox="0 0 24 24">
                 <path d="m11.322 2.923c.126-.259.39-.423.678-.423.289 
@@ -11,7 +11,7 @@ export default function RatingBadge(rating) {
                 1.07-5.952s-2.773-2.653-4.382-4.191c-.16-.153-.232-.346-.232-.535 0-.352.249-.694.651-.748 2.211-.305 
                 6.021-.829 6.021-.829s1.677-3.442 2.65-5.44z" fill-rule="nonzero"/>
             </svg>
-        <span>{rating}</span>
-    </div>
+            <span>{rating}</span>
+        </div>
     )
 }

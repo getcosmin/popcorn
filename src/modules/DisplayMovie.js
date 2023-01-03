@@ -1,5 +1,7 @@
-
+// 00 - React
 import { useEffect, useState } from "react";
+
+// 01 - Components
 import RatingBadge from "./components/element-component/RatingBadge";
 
 export default function MovieDisplay({movieID, closeDisplayWindow}) {
@@ -38,11 +40,6 @@ export default function MovieDisplay({movieID, closeDisplayWindow}) {
     const renderMovieGenres = movieDetails.genres.map(genre => {
         return <span className='card-genres'>{genre.name}</span>
     })
-
-    function closeMovieDisplay() {
-        const displayWindow = document.querySelector('.display');
-        displayWindow.remove()
-    }
 
     return (
         <section className='display'>

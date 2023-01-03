@@ -1,8 +1,12 @@
+// 00 - React
 import { useState } from "react";
-import SmallCard from './components/element-component/SmallCard'
-import SkeletonSmallCard from "./skeleton/SkeletonSmallCard";
+
+// 01 - Components
 import CarouselNavigation from './components/element-component/CarouselNavigation'
 import HeadlineSmall from './components/HeadlineSmall'
+import SmallCard from './components/element-component/SmallCard'
+import SkeletonSmallCard from "./skeleton/SkeletonSmallCard";
+
 
 export default function Carousel(props) {
     
@@ -18,7 +22,7 @@ export default function Carousel(props) {
             disableSkeleton(false)
 
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }      
     }
 

@@ -1,16 +1,16 @@
+// 00 - React
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
 
-import iconSort from "../modules/images/icon-sort"
-import iconFilter from "../modules/images/icon-filter"
+// 01 - Components
 import PageFilter from './components/PageFilter'
 
 export default function FilterModule({genres, movieFilter, filterMovies}) {
 
-    const [isFilterEnabled, setFilters] = useState(false)
+    const [isFilterEnabled, setFilterEnabled] = useState(false)
 
     function showFilters() {
-        isFilterEnabled ? setFilters(false) : setFilters(true)
+        isFilterEnabled ? setFilterEnabled(false) : setFilterEnabled(true)
     }
 
     return(
@@ -21,7 +21,7 @@ export default function FilterModule({genres, movieFilter, filterMovies}) {
                             filterMovies = {filterMovies}
                             toggleFilter = {showFilters}
                 />
-                , document.body) }
+                , document.querySelector('#root')) }
 
             <div className='filter wrapper'>
                 <button className='button-sort'>

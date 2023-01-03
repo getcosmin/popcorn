@@ -1,5 +1,5 @@
+// 00 - React
 import { useEffect, useState } from "react"
-import useFetch from "../../hooks/useFetch"
 
 export default function GenreListFilter() {
     const [movieGenres, setMovieGenres] = useState([])

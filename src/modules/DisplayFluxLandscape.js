@@ -1,3 +1,4 @@
+// 01 - IMPORTING - Components
 import HeadlineSmall from "./components/HeadlineSmall";
 import MovieLandscape from './components/MovieLandscape'
 

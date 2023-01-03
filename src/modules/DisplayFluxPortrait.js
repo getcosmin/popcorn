@@ -1,3 +1,4 @@
+// 01 - Components
 import HeadlineSmall from "./components/HeadlineSmall";
 import MoviesRender from './components/MoviesRender'
 

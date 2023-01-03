@@ -1,3 +1,4 @@
+// 00 - React
 import { useEffect, useState } from "react"
 
 export default function FilterPage({genres, movieFilter, filterMovies, toggleFilter}) {
@@ -34,7 +35,7 @@ export default function FilterPage({genres, movieFilter, filterMovies, toggleFil
         filterMovies(event)
     }
 
-    return(
+    return (
         <section className='filter-page'>
             <button onClick={toggleFilter}>
                 <svg className='button-round close-display' width="24" height="24" viewBox="0 0 24 24">

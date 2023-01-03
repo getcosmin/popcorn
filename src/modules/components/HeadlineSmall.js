@@ -1,5 +1,5 @@
 export default function HeadlineSmall({title}) {
-    return(
+    return (
 
         <header className='wrapper line'>
             <h2>{title}</h2>

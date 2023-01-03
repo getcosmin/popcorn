@@ -1,6 +1,9 @@
+// 00 - IMPORTING - React
+import { useEffect } from 'react';
+
+// 01 - IMPORTING - Components
 import ArrowRight from '../../images/icon-arrow-right'
 import ArrowLeft from '../../images/icon-arrow-left'
-import { useEffect } from 'react';
 
 
 export default function CarouselNavigation() {
@@ -24,19 +27,16 @@ export default function CarouselNavigation() {
 
     const slideCardLeft = event => event.target.closest('.card-scroll-frame').scrollLeft -= 300;
 
+    return (
 
-    return(
         <div className='carousel-navigation'>
             <button className='carousel-nav-button' onClick={slideCardLeft}>
-                <svg className='carousel-nav-icon' width="24" height="24" viewBox="0 0 32 32">
-                    {ArrowLeft}
-                 </svg>
+                {ArrowLeft}
             </button>
-            <button className='carousel-nav-button' onClick={slideCardRight}>
-                <svg className='carousel-nav-icon' width="24" height="24" viewBox="0 0 32 32">
-                    {ArrowRight}
-                </svg>
+            <button className='carousel-nav-button' onClick={slideCardRight}>    
+                {ArrowRight}
             </button>
         </div>
+        
     )
 }

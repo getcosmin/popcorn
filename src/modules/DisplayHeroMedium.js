@@ -1,7 +1,8 @@
+// 01 - Components
 import HeadlineMain from "./components/HeadlineMain";
 
 export default function HeroMedium({content}) {
-    return(
+    return (
         
         <section className='hero-medium'>
             <div className='wrapper'>

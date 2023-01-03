@@ -1,63 +1,69 @@
+// 00 - React
 import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
+
+// 01 - Components
 import PopcornLogo from './images/popcorn-logo'
 import iconSearch from './images/icon-search'
 import MovieItemResult from './components/element-component/MovieItemResult'
 import MovieDisplayModule from './DisplayMovie'
-import { createPortal } from 'react-dom'
+
 
 
 export default function Navigation() {
-  
-    const [movieTitle, setMovieTitle] = useState('')
-    const [isMovieDisplayEnabled, setMovieDisplayEnabled] = useState(false)
-    const [movieResults, setMovieResults] = useState([])
-    const [movieID, setMovieID] = useState([])
+  const [isMovieDisplayEnabled, setMovieDisplayEnabled] = useState(false)
+  const [movieTitle, setMovieTitle] = useState('')
+  const [movieResults, setMovieResults] = useState([])
+  const [movieID, setMovieID] = useState([])
 
-    const API_LINK = 'https://api.themoviedb.org/3/search/movie?api_key=350845626c05bcf9e670b1135deffe7b&language=en-US&query=';
-    console.log(movieTitle)
-    function searchMovieTitle(event) {
-      setMovieTitle(event.target.value)
-    }
+  const API_LINK = 'https://api.themoviedb.org/3/search/movie?api_key=350845626c05bcf9e670b1135deffe7b&language=en-US&query=';
 
-    function openDisplay(event) {
-      setMovieID([event.target.id])
-      setMovieTitle('')
-      setMovieResults([])
-      setMovieDisplayEnabled(true)
-    }
+  function searchMovieTitle(event) {
+    setMovieTitle(event.target.value)
+  }
 
-    useEffect(() => {
-      const movieContainer = document.querySelector('.movie-results')
-      movieContainer.addEventListener('click', openDisplay)
-    }, [])
+  function openDisplay(event) {
+    setMovieID([event.target.id])
+    setMovieTitle('')
+    setMovieResults([])
+    setMovieDisplayEnabled(true)
+  }
 
-    useEffect(() => {
-      if (movieTitle.length > 0) {
-        try {
-          fetchMovies()
-          async function fetchMovies() {
-            const response = await fetch(`${API_LINK}${movieTitle}`);
-            const data = await response.json();
+  useEffect(() => {
+    const movieContainer = document.querySelector('.movie-results')
+    movieContainer.addEventListener('click', openDisplay)
+  }, [])
 
-            setMovieResults(data.results)
+  useEffect(() => {
+    if (movieTitle.length > 0) {
+      try {
+        fetchMovies()
+        async function fetchMovies() {
+          const response = await fetch(`${API_LINK}${movieTitle}`);
+          const data = await response.json();
 
-            console.log(movieResults)
-          }
-        } catch(error) {
-          console.log(error)
+          setMovieResults(data.results)
+
+        }
+      } catch(error) {
+        console.error(error)
         }
       } else {
         setMovieResults([])
       }
-    }, [movieTitle])
+  }, [movieTitle])
 
-    const changeState = () => {
-      setMovieDisplayEnabled(false)
-    }
+  const changeState = () => {
+    setMovieDisplayEnabled(false)
+  }
 
     return(
       <>
-        {isMovieDisplayEnabled && createPortal(<MovieDisplayModule movieID={movieID} closeDisplayWindow={changeState}/>, document.body)}
+        {isMovieDisplayEnabled && createPortal (
+          <MovieDisplayModule movieID={movieID} 
+                              closeDisplayWindow={changeState}
+          />
+          , document.querySelector('#root'))}
 
         <nav className='navbar'>
           <div className='wrapper'>
