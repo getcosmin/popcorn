@@ -1,5 +1,6 @@
 export default function RatingBadge(rating) {
     return (
+
         <div className='card-review'>
             <svg className='card-rating' viewBox="0 0 24 24">
                 <path d="m11.322 2.923c.126-.259.39-.423.678-.423.289 
@@ -13,5 +14,6 @@ export default function RatingBadge(rating) {
             </svg>
             <span>{rating}</span>
         </div>
+        
     )
 }
