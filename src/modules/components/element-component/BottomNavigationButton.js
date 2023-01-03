@@ -1,4 +1,4 @@
-export default function BottomNavButton({button}) {
+export default function BottomNavigationButton({button}) {
     return(
 
         <div className='navigation-button'>

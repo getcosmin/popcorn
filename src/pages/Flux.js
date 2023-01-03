@@ -4,6 +4,7 @@ import useFetch from '../hooks/useFetch'
 import { useEffect, useState } from 'react'
 import FilterModule from '../modules/FilterModule'
 import useFetchGenres from '../hooks/useFetchGenres'
+import DisplayFluxPortrait from '../modules/DisplayFluxPortrait'
 
 export default function Flux() {
     const [movieFilter, setMovieFilter] = useState(null);
@@ -53,7 +54,7 @@ export default function Flux() {
             
             { currentMovies[0] !== undefined ? <DisplayFluxLandscape movies = {currentMovies} movieCategory = {movieFilter}/> : console.log('Loading Movies...')}
             
-    
+            { currentMovies[0] !== undefined ? <DisplayFluxPortrait movies = {currentMovies} movieCategory = {movieFilter}/> : console.log('Loading Movies...')}    
 
             
         </>

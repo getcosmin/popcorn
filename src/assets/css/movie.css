@@ -523,7 +523,7 @@ FLUX Movies
 .flux-movies {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-01);
+    gap: var(--spacing-02);
 }
 .flux-movie-img {
     border-radius: var(--spacing-01);
@@ -609,7 +609,7 @@ DESKTOP CSS
         flex: 0 0 calc(100% / var(--card-number) - var(--spacing-02));
     }
     .flux-movies {
-        grid-template-columns: repeat(10, 1fr);
+        grid-template-columns: repeat(8, 1fr);
     }
     .flux-landscape {
         display: grid;

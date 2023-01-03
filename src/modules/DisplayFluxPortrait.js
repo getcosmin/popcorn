@@ -1,15 +1,13 @@
-import HeadlineM from "./components/HeadlineM";
+import HeadlineSmall from "./components/HeadlineSmall";
 import MoviesRender from './components/MoviesRender'
 
 export default function MovieList(movies, title) {
 
     return(
         <section>
-
-            <HeadlineM  title = 'Movies' />
+            <HeadlineSmall  title = 'Movies' />
             
             <div className='wrapper'>
-
 
                 <MoviesRender movies = {{...movies}} />
 

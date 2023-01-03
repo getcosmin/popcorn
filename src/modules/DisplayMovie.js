@@ -6,9 +6,6 @@ export default function MovieDisplay({movieID, closeDisplayWindow}) {
     const [movieDetails, setMovieDetails] = useState()
     const [movieTrailer, setMovieTrailer] = useState()
 
-    console.log(movieID)
-    console.log(closeDisplayWindow)
-
     useEffect(() => {
         fetchMovieDetails()
         async function fetchMovieDetails() {

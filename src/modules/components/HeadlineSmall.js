@@ -1,4 +1,4 @@
-export default function HeadlineM({title}) {
+export default function HeadlineSmall({title}) {
     return(
 
         <header className='wrapper line'>

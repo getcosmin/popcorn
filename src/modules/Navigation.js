@@ -7,10 +7,12 @@ import { createPortal } from 'react-dom'
 
 
 export default function Navigation() {
+  
     const [movieTitle, setMovieTitle] = useState('')
-    const [movieDisplay, showMovieDisplay] = useState(false)
+    const [isMovieDisplayEnabled, setMovieDisplayEnabled] = useState(false)
     const [movieResults, setMovieResults] = useState([])
     const [movieID, setMovieID] = useState([])
+
     const API_LINK = 'https://api.themoviedb.org/3/search/movie?api_key=350845626c05bcf9e670b1135deffe7b&language=en-US&query=';
     console.log(movieTitle)
     function searchMovieTitle(event) {
@@ -21,7 +23,7 @@ export default function Navigation() {
       setMovieID([event.target.id])
       setMovieTitle('')
       setMovieResults([])
-      showMovieDisplay(true)
+      setMovieDisplayEnabled(true)
     }
 
     useEffect(() => {
@@ -50,12 +52,12 @@ export default function Navigation() {
     }, [movieTitle])
 
     const changeState = () => {
-      showMovieDisplay(false)
+      setMovieDisplayEnabled(false)
     }
 
     return(
       <>
-        {movieDisplay && createPortal(<MovieDisplayModule movieID={movieID} closeDisplayWindow={changeState}/>, document.body)}
+        {isMovieDisplayEnabled && createPortal(<MovieDisplayModule movieID={movieID} closeDisplayWindow={changeState}/>, document.body)}
 
         <nav className='navbar'>
           <div className='wrapper'>

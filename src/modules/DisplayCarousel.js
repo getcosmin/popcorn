@@ -7,7 +7,7 @@ import HeadlineSmall from './components/HeadlineSmall'
 export default function Carousel(props) {
     
     const [movies, setMovies] = useState([])
-    const [skeleton, setSkeleton] = useState(true)
+    const [isSkeletonEnabled, setSkeletonEnabled] = useState(true)
 
     const listShows = async () => {
         try {
@@ -32,7 +32,7 @@ export default function Carousel(props) {
     })    
 
     function disableSkeleton() {
-        setSkeleton(false)
+        setSkeletonEnabled(false)
     }
 
     const cards = ['1','2','3','4','5','6','7','8']
@@ -45,7 +45,7 @@ export default function Carousel(props) {
                 
                 <HeadlineSmall  title = {props.title} />
                 
-                { skeleton? <div className='card-scroll-frame'> { cards.map(card => <SkeletonSmallCard/>) }</div> : null}
+                { isSkeletonEnabled ? <div className='card-scroll-frame'> { cards.map(card => <SkeletonSmallCard/>) } </div> : null}
         
                 <div className='card-scroll-frame'>
                     

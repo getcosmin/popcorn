@@ -6,10 +6,10 @@ import { useEffect } from 'react';
 export default function CarouselNavigation() {
 
     useEffect(() => {
-        const skeletonCard = document.querySelector('.card-image-placeholder');
+        const selectSkeletonCard = document.querySelector('.card-image-placeholder');
         const realCard = document.querySelector('.card');
 
-        skeletonCard !== null ? updateButtonSize(skeletonCard) : updateButtonSize(realCard)
+        selectSkeletonCard !== null ? updateButtonSize(selectSkeletonCard) : updateButtonSize(realCard)
 
         function updateButtonSize(card) {
             const navButtons = document.querySelectorAll('.carousel-nav-button')

@@ -2,11 +2,11 @@ import { useEffect, useState } from "react"
 
 export default function FilterPage({genres, movieFilter, filterMovies, toggleFilter}) {
 
-    const [genresFilter, setGenresFilter] = useState(false)
-    const [newGenres, setNewGenres] = useState([])
+    const [isGenreFilterEnabled, setGenresFilterEnabled] = useState(false)
+    const [currentGenres, setCurrentGenres] = useState([])
 
     function toggleGenresList() {
-        genresFilter ? setGenresFilter(false) : setGenresFilter(true)
+        isGenreFilterEnabled ? setGenresFilterEnabled(false) : setGenresFilterEnabled(true)
     }
 
     useEffect(() => {
@@ -15,7 +15,7 @@ export default function FilterPage({genres, movieFilter, filterMovies, toggleFil
         genres.forEach(element => {
             for(let genre of genreList) {
                 if(element.name == genre) {
-                    setNewGenres(prevValue => [...prevValue, {'name': element.name, 'id': element.id},])
+                    setCurrentGenres(prevValue => [...prevValue, {'name': element.name, 'id': element.id},])
                 }
             }
         })
@@ -52,8 +52,8 @@ export default function FilterPage({genres, movieFilter, filterMovies, toggleFil
                         <rect className="vertical" x="8" y="23" width="32" height="3" rx="0.4"/>
                     </svg> 
                 </div>
-                <ul className='genres-list list-none' data-type={genresFilter}>
-                    {newGenres.map(genre => 
+                <ul className='genres-list list-none' data-type={isGenreFilterEnabled}>
+                    {currentGenres.map(genre => 
                            <span id={genre.id} className="genre-option" onClick={buttonAnimation}>{genre.name}</span>  
                     )}
                 </ul>
