@@ -1,10 +1,11 @@
-import DisplayHeroMedium from '../modules/DisplayHeroMedium'
-import DisplayFluxLandscape from '../modules/DisplayFluxLandscape'
+import DisplayHeadlineSmall from '../sections/components/HeadlineSmall'
+import DisplayHeroLarge from '../sections/DisplayHeroLarge'
+import DisplayFluxLandscape from '../sections/DisplayFluxLandscape'
 import useFetch from '../hooks/useFetch'
 import { useEffect, useState } from 'react'
-import FilterModule from '../modules/FilterModule'
+import FilterModule from '../sections/FilterModule'
 import useFetchGenres from '../hooks/useFetchGenres'
-import DisplayFluxPortrait from '../modules/DisplayFluxPortrait'
+import DisplayFluxPortrait from '../sections/DisplayFluxPortrait'
 
 export default function Flux() {
     const [movieFilter, setMovieFilter] = useState(null);
@@ -38,12 +39,15 @@ export default function Flux() {
     return (
 
         <>
-            <DisplayHeroMedium
-                content = {{
-                    title: 'Flux',
-                    subtitle: 'Discover your favorite movies.'
-                }}
+            <DisplayHeroLarge 
+                    text = {{
+                        title: 'Discover Flux',
+                        subtitle: 'Find your favorite movies.'
+                    }}
             />
+
+            <DisplayHeadlineSmall title='Movies' />
+
             { genreList[0] !== undefined ?  
                 <FilterModule   genres = {genreList} 
                                 movieFilter = {addMovieFilter} 
@@ -51,10 +55,9 @@ export default function Flux() {
                 /> 
                 : null}
 
+            { currentMovies[0] !== undefined ? <DisplayFluxPortrait movies = {currentMovies} movieCategory = {movieFilter}/> : console.log('Loading Movies...')}    
             
             { currentMovies[0] !== undefined ? <DisplayFluxLandscape movies = {currentMovies} movieCategory = {movieFilter}/> : console.log('Loading Movies...')}
-            
-            { currentMovies[0] !== undefined ? <DisplayFluxPortrait movies = {currentMovies} movieCategory = {movieFilter}/> : console.log('Loading Movies...')}    
 
             
         </>

@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 
 // 01 - Components
-import BottomNavButton from './components/element-component/BottomNavigationButton'
+import BottomNavButton from './components/sub-components/BottomNavigationButton'
 import iconHome from './images/icon-home'
 import iconFlux from './images/icon-flux'
 import iconBell from './images/icon-bell'

@@ -23,7 +23,7 @@ export default function FilterModule({genres, movieFilter, filterMovies}) {
                 />
                 , document.querySelector('#root')) }
 
-            <div className='filter wrapper'>
+            <section className='filter wrapper'>
                 <button className='button-sort'>
                     <svg className='button-icon button-round' width='48' height='48' viewBox="0 0 48 48">
                         <rect x="12" y="16" width="24" height="2" rx="0.4"></rect>
@@ -39,7 +39,7 @@ export default function FilterModule({genres, movieFilter, filterMovies}) {
                         <rect x="26" y="26" width="8" height="8" rx="0.4"></rect>
                     </svg>
                 </button>
-            </div>
+            </section>
         </>
     )
 }

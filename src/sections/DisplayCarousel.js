@@ -2,9 +2,9 @@
 import { useState } from "react";
 
 // 01 - Components
-import CarouselNavigation from './components/element-component/CarouselNavigation'
+import CarouselNavigation from './components/sub-components/CarouselNavigation'
 import HeadlineSmall from './components/HeadlineSmall'
-import SmallCard from './components/element-component/SmallCard'
+import SmallCard from './components/sub-components/SmallCard'
 import SkeletonSmallCard from "./skeleton/SkeletonSmallCard";
 
 

@@ -27,6 +27,7 @@
     --text-line-height: 1.5;
     --text-small: 1.4rem;
     --text-normal: 1.6rem;
+    --text-large: 1.8rem;
     --pill-padding: 0.8rem 1.6rem;
 
     --icon-size-small: 2.4rem;
@@ -66,10 +67,9 @@ body {
     margin: 0 var(--spacing-02);
 }
 h1 {
+    text-align: center;
     margin-block-end: 0;
     font-size: var(--title-h1);
-    text-transform: uppercase;
-    text-align: center;
     line-height: 1;
 }
 h2 {
@@ -187,6 +187,8 @@ button {
 NAVBAR
 -------------------- */
 .navbar {
+    position: absolute;
+    width: 100%;
     padding-top: var(--spacing-02);
     margin-bottom: var(--spacing-02);
 }
@@ -273,13 +275,15 @@ CARD Scroller
     -webkit-tap-highlight-color: transparent;
 }
 .search-box {
-    padding: 0.2rem 0.8rem;
+    padding: 0.4rem 0.8rem;
     display: flex;
     gap: 0.4rem;
     align-items: center;
     border: 0.1rem solid var(--color-border);
     border-radius: 3rem;
     height: 2.4rem;
+    z-index: 10;
+    background-color: var(--color-background-01);
 }
 /* -------------------- 
 FILTER
@@ -387,48 +391,43 @@ BOTTOM Navigation
     z-index: 10;
 }
 .movie-cover {
+    z-index: 1000;
     width: 100%;
     height: 64px;
     position: absolute;
 }
 /* -------------------- 
-HERO Image
+DISPLAY HERO Max
 -------------------- */
-
-.hero {
-    min-height: 60vh;
+.hero-static {
+    margin-block: 0;
+    height: 80vh;
+    grid-template-rows: 100%;
     display: grid;
-    grid-template-rows: 35vh 25vh;
-    justify-content: center;
-    margin-block: 0 var(--spacing-04);
-}
-.hero-subtitle {
-    text-align: center;
-}
-
-.hero-poster {
-    height: auto;
-    width: 100vw;
-    scale: 120%;
-    margin-top: 6rem;
-    position: relative;;
-    grid-area: 1 / 1;
 }
 .hero-body {
-    color: var(--color-text);
-    z-index: 1;
-    grid-area: 2 / 1;
-}
-.hero-headline {
-    height: 100%;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: left;
+    position: relative;
+    height: 100%;
+    grid-area: 1/1;
 }
-.headline-center {
-    text-align: center;
+.hero-subtitle {
+    color: var(--color-text-secondary);
 }
+.hero-focus {
+    grid-area: 1/1;
+}
+.hero-image-large {
+    width: auto;
+    height: 100%;
+}
+
+/* -------------------- 
+MOVIE Search Results
+-------------------- */
+
 .movie-item {
     display: flex;
     gap: var(--spacing-02);
@@ -485,6 +484,8 @@ FOOTER
     display: block;
 }
 
+
+
 /* -------------------- 
 DISPLAY Movies
 -------------------- */
@@ -531,8 +532,7 @@ FLUX Movies
     height: auto;
 }
 .filter {
-    margin-top: var(--spacing-02);
-    margin-bottom: var(--spacing-02);
+    padding: 0 0 var(--spacing-03) 0;
     display: flex;
     justify-content: space-between;
 }
@@ -542,6 +542,13 @@ DESKTOP CSS
 -------------------- */
 
 @media (min-width: 1024px) {
+    h1 {
+        text-align: left;
+    }
+    .hero-subtitle {
+        text-align: left;
+        font-size: var(--text-large);
+    }
     .carousel-container {
         display: grid;
     }

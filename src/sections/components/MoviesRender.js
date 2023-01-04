@@ -1,5 +1,5 @@
 // 01 - Components
-import MovieItem from './element-component/MovieItem'
+import MovieItem from './sub-components/MovieItem'
 
 export default function MoviesRender({movies}) {
     return (

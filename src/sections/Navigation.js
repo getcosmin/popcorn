@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom'
 // 01 - Components
 import PopcornLogo from './images/popcorn-logo'
 import iconSearch from './images/icon-search'
-import MovieItemResult from './components/element-component/MovieItemResult'
+import MovieItemResult from './components/sub-components/MovieItemResult'
 import MovieDisplayModule from './DisplayMovie'
 
 

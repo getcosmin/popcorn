@@ -1,6 +1,6 @@
 
-import DisplayCarousel from '../modules/DisplayCarousel'
-import DisplayHero from '../modules/DisplayHero'
+import DisplayCarousel from '../sections/DisplayCarousel'
+import DisplayHero from '../sections/DisplayHero'
 
 export default function Home() {
 

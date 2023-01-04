@@ -2,9 +2,9 @@ import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import Flux from './pages/Flux'
 import Notifications from './pages/Notifications'
-import Navigation from './modules/Navigation'
-import NavigationBottom from './modules/NavigationBottom'
-import Footer from './modules/Footer'
+import Navigation from './sections/Navigation'
+import NavigationBottom from './sections/NavigationBottom'
+import Footer from './sections/Footer'
 import './assets/css/movie.css';
 import useLocalStorage from './hooks/useLocalStorage'
 import './assets/css/movie.css';
@@ -44,9 +44,11 @@ export default function App() {
         <Route path='/notifications' element = { <Notifications />} />
       </Routes>
 
-      <NavigationBottom 
-        switch = {switchTheme}
-      />
+      {window.innerWidth < 1024 ? <NavigationBottom 
+                                      switch = {switchTheme}
+                                  />
+                                  : null
+      }
 
       <Footer />  
 

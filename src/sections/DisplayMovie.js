@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 // 01 - Components
-import RatingBadge from "./components/element-component/RatingBadge";
+import RatingBadge from "./components/sub-components/RatingBadge";
 
 export default function MovieDisplay({movieID, closeDisplayWindow}) {
     const [movieDetails, setMovieDetails] = useState()
