@@ -3,103 +3,125 @@ import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 // 01 - Components
+import PageSearchResults from './components/PageSearchResults'
+import ButtonClose from './components/sub-components/ButtonClose'
 import PopcornLogo from './images/popcorn-logo'
 import iconSearch from './images/icon-search'
-import MovieItemResult from './components/sub-components/MovieItemResult'
-import MovieDisplayModule from './DisplayMovie'
-
-
+import DisplayMovie from './DisplayMovie'
+import ButtonSearch from './components/sub-components/ButtonSearch'
 
 export default function Navigation() {
-  const [isMovieDisplayEnabled, setMovieDisplayEnabled] = useState(false)
-  const [movieTitle, setMovieTitle] = useState('')
-  const [movieResults, setMovieResults] = useState([])
-  const [movieID, setMovieID] = useState([])
+  const [hasMovieDisplayEnabled, setMovieDisplayEnabled] = useState(false)
+  const [movieSearchTitle, setMovieSearchTitle] = useState('')
+  const [moviesSearchResults, setMoviesSearchResults] = useState([])
+  const [isUserSearching, setUserSearching] = useState(false)
+  const [movieSearchID, setMovieSearchID] = useState([])
+  const [hasSearchEnabled, setSearchEnabled] = useState(false)
 
   const API_LINK = 'https://api.themoviedb.org/3/search/movie?api_key=350845626c05bcf9e670b1135deffe7b&language=en-US&query=';
 
+  function openSearchBar() {
+    setSearchEnabled(true)
+  }
+
   function searchMovieTitle(event) {
-    setMovieTitle(event.target.value)
+    setMovieSearchTitle(event.target.value)
   }
 
   function openDisplay(event) {
-    setMovieID([event.target.id])
-    setMovieTitle('')
-    setMovieResults([])
+    document.querySelector('.search-box').classList.add('hide')
+    setMovieSearchID([event.target.id])
+    setMovieSearchTitle('')
+    setMoviesSearchResults([])
     setMovieDisplayEnabled(true)
+    setSearchEnabled(false)
   }
 
   useEffect(() => {
-    const movieContainer = document.querySelector('.movie-results')
-    movieContainer.addEventListener('click', openDisplay)
-  }, [])
-
-  useEffect(() => {
-    if (movieTitle.length > 0) {
+    if (movieSearchTitle.length > 0) {
       try {
         fetchMovies()
         async function fetchMovies() {
-          const response = await fetch(`${API_LINK}${movieTitle}`);
+          const response = await fetch(`${API_LINK}${movieSearchTitle}`);
           const data = await response.json();
 
-          setMovieResults(data.results)
-
+          setMoviesSearchResults(data.results)
+          document.querySelector('.navbar').classList.add('search-active')
+          document.body.classList.add('disable-scroll')
+          setUserSearching(true)
         }
       } catch(error) {
         console.error(error)
         }
       } else {
-        setMovieResults([])
+        closeSearchWindow()
       }
-  }, [movieTitle])
+  }, [movieSearchTitle])
 
-  const changeState = () => {
+  const closeDisplayWindow = () => {
+    const searchBox = document.querySelector('.search-box');
+    if (searchBox !== null) {
+      searchBox.classList.remove('hide')
+    }
     setMovieDisplayEnabled(false)
   }
 
+  function closeSearchWindow() {
+    console.log('butonClose pressed')
+    setUserSearching(false)
+    setMoviesSearchResults([])
+    document.body.classList.remove('disable-scroll')
+    document.querySelector('.navbar').classList.remove('search-active')
+    setMovieSearchTitle('')
+  }
+  function closeSearch() {
+    setSearchEnabled(false)
+    closeSearchWindow()
+    closeDisplayWindow()
+  }
     return(
       <>
-        {isMovieDisplayEnabled && createPortal (
-          <MovieDisplayModule movieID={movieID} 
-                              closeDisplayWindow={changeState}
+        {hasMovieDisplayEnabled && createPortal (
+          <DisplayMovie 
+            movieID={movieSearchID}
           />
           , document.querySelector('#root'))}
 
         <nav className='navbar'>
           <div className='wrapper'>
-            <div className='navbar-container flex gap-01'>
+            <div className='navbar-container'>
               <div className='navbar-brand'>
+
                 <PopcornLogo/>
+
+              {!hasSearchEnabled && !hasMovieDisplayEnabled ?
+                  <ButtonSearch openSearchBar = {openSearchBar} />     
+                :
+                  <ButtonClose closeFunction = {closeSearch}/>             
+              }
+
               </div>
-              <div className='search-box'>
-                {iconSearch}
-                <input 
-                  className='search-input' 
-                  placeholder='Search for a title...'
-                  type='text'
-                  onChange= {searchMovieTitle}
-                 value = {movieTitle}            
-                />
-              </div>
+              {hasSearchEnabled &&
+                  <div className='search-box'>
+                            {iconSearch}
+                    <input 
+                      className='search-input' 
+                      placeholder='Search for a title...'
+                      type='text'
+                      onChange= {searchMovieTitle}
+                      value = {movieSearchTitle}            
+                    />
+                  </div>              
+              }
             </div>
-            <div className='navbar-search-menu'>
-              <div className='movie-results'>
-                <div className='movie-list wrapper'>
-                  {movieResults !== [] ?
-                    movieResults.map(movie => {
-                      if (movie.backdrop_path !== null)
-                        return (
-                          <MovieItemResult
-                            key = {movie.id}
-                            {...movie}
-                          />
-                        )
-                      })
-                    : null
-                  }
-                </div>
-              </div>
-            </div>
+              {isUserSearching && createPortal (
+                  <PageSearchResults 
+                      movies = {moviesSearchResults}
+                      closeSearchWindow = {closeSearchWindow}
+                      openDisplay = {openDisplay}
+                      isUserSearching = {isUserSearching}
+                  />
+                  , document.querySelector('.navbar'))}
           </div>
         </nav>
       </>
