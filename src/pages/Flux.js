@@ -1,5 +1,5 @@
 import DisplayHeadlineSmall from '../sections/components/HeadlineSmall'
-import DisplayHeroLarge from '../sections/DisplayHeroLarge'
+import DisplayHeroStatic from '../sections/DisplayHeroStatic'
 import DisplayFluxLandscape from '../sections/DisplayFluxLandscape'
 import useFetch from '../hooks/useFetch'
 import { useEffect, useState } from 'react'
@@ -39,7 +39,7 @@ export default function Flux() {
     return (
 
         <>
-            <DisplayHeroLarge 
+            <DisplayHeroStatic
                     text = {{
                         title: 'Discover Flux',
                         subtitle: 'Find your favorite movies.'

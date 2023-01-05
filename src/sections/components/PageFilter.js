@@ -1,10 +1,14 @@
 // 00 - React
 import { useEffect, useState } from "react"
 
+// 01 - Components
+import ButtonClose from './sub-components/ButtonClose'
+import ButtonExpand from './sub-components/ButtonExpand'
+
 export default function FilterPage({genres, movieFilter, filterMovies, toggleFilter}) {
 
     const [isGenreFilterEnabled, setGenresFilterEnabled] = useState(false)
-    const [currentGenres, setCurrentGenres] = useState([])
+    const [currentMovieGenres, setCurrentMovieGenres] = useState([])
 
     function toggleGenresList() {
         isGenreFilterEnabled ? setGenresFilterEnabled(false) : setGenresFilterEnabled(true)
@@ -16,7 +20,7 @@ export default function FilterPage({genres, movieFilter, filterMovies, toggleFil
         genres.forEach(element => {
             for(let genre of genreList) {
                 if(element.name == genre) {
-                    setCurrentGenres(prevValue => [...prevValue, {'name': element.name, 'id': element.id},])
+                    setCurrentMovieGenres(prevValue => [...prevValue, {'name': element.name, 'id': element.id},])
                 }
             }
         })
@@ -37,24 +41,14 @@ export default function FilterPage({genres, movieFilter, filterMovies, toggleFil
 
     return (
         <section className='filter-page'>
-            <button onClick={toggleFilter}>
-                <svg className='button-round close-display' width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M13.4,12l4.1-4.1c0.1-0.1,0.1-0.2,0-0.3l-1.1-1.1c-0.1-0.1-0.2-0.1-0.3,0L12,10.6L7.9,6.5c-0.1-0.1-0.2-0.1-0.3,0L6.5,7.6
-      		                        c-0.1,0.1-0.1,0.2,0,0.3l4.1,4.1l-4.1,4.1c-0.1,0.1-0.1,0.2,0,0.3l1.1,1.1c0.1,0.1,0.2,0.1,0.3,0l4.1-4.1l4.1,4.1
-      		                        c0.1,0.1,0.2,0.1,0.3,0l1.1-1.1c0.1-0.1,0.1-0.2,0-0.3L13.4,12z">
-                    </path>
-                </svg>
-            </button>
             <div className='wrapper'>
+                <ButtonClose closeFunction={toggleFilter} />
                 <div className='filter-page-nav'>
                     <p>Genres List</p>
-                    <svg className='button-round' onClick={toggleGenresList} width="48" height="48" viewBox="0 0 48 48">
-                        <rect x="8" y="23" width="32" height="3" rx="0.4"/>
-                        <rect className="vertical" x="8" y="23" width="32" height="3" rx="0.4"/>
-                    </svg> 
+                <ButtonExpand eventHandler = {toggleGenresList} />
                 </div>
                 <ul className='genres-list list-none' data-type={isGenreFilterEnabled}>
-                    {currentGenres.map(genre => 
+                    {currentMovieGenres.map(genre => 
                            <span id={genre.id} className="genre-option" onClick={buttonAnimation}>{genre.name}</span>  
                     )}
                 </ul>

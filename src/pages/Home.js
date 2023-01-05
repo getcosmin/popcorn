@@ -1,13 +1,18 @@
 
 import DisplayCarousel from '../sections/DisplayCarousel'
-import DisplayHero from '../sections/DisplayHero'
+import DisplayHeroSlider from '../sections/DisplayHeroSlider'
 
 export default function Home() {
 
   return (
     <>
 
-        <DisplayHero />
+        <DisplayHeroSlider
+            text = {{
+              title: 'Movie Station',
+              subtitle: 'Pick your favorite movie.'
+            }}
+          />
 
         <DisplayCarousel
           genre = {'Science-Fiction'}

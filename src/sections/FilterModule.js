@@ -7,32 +7,32 @@ import PageFilter from './components/PageFilter'
 
 export default function FilterModule({genres, movieFilter, filterMovies}) {
 
-    const [isFilterEnabled, setFilterEnabled] = useState(false)
+    const [hasFilterEnabled, setFilterEnabled] = useState(false)
 
-    function showFilters() {
-        isFilterEnabled ? setFilterEnabled(false) : setFilterEnabled(true)
+    function toggleMovieFilter() {
+        hasFilterEnabled ? setFilterEnabled(false) : setFilterEnabled(true)
     }
 
     return(
         <>
-            { isFilterEnabled && createPortal (
+            { hasFilterEnabled && createPortal (
                 <PageFilter genres = {genres} 
                             movieFilter = {movieFilter} 
                             filterMovies = {filterMovies}
-                            toggleFilter = {showFilters}
+                            toggleFilter = {toggleMovieFilter}
                 />
-                , document.querySelector('#root')) }
+                , document.querySelector('.background')) }
 
             <section className='filter wrapper'>
-                <button className='button-sort'>
-                    <svg className='button-icon button-round' width='48' height='48' viewBox="0 0 48 48">
+                <button className='button-sort button-round'>
+                    <svg className='button-icon' width='48' height='48' viewBox="0 0 48 48">
                         <rect x="12" y="16" width="24" height="2" rx="0.4"></rect>
                         <rect x="12" y="24" width="16" height="2" rx="0.4"></rect>
                         <rect x="12" y="32" width="24" height="2" rx="0.4"></rect>
                     </svg>
                 </button>
-                <button className='button-filter' onClick={showFilters}>
-                    <svg className='button-icon button-round' width='48' height='48' viewBox="0 0 48 48">
+                <button className='button-filter button-round' onClick={toggleMovieFilter}>
+                    <svg className='button-icon' width='48' height='48' viewBox="0 0 48 48">
                         <rect x="14" y="14" width="8" height="8" rx="0.4"></rect>
                         <rect x="26" y="14" width="8" height="8" rx="0.4"></rect>
                         <rect x="14" y="26" width="8" height="8" rx="0.4"></rect>
