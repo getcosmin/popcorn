@@ -1,3 +1,6 @@
+// 01 - Components
+import ButtonPlayTrailer from "./sub-components/ButtonPlay";
+
 export default function HeroSliderBody({movie}) {
     
 
@@ -7,7 +10,7 @@ export default function HeroSliderBody({movie}) {
             <div className='hero-body wrapper'>
                 <header className='slider-headline'>
                     <img className='hero-brand' src={movie.image.brand} alt={movie.title}/>
-                    <p className='hero-subtitle'>{movie.subtitle}</p>
+                    <ButtonPlayTrailer/>
                 </header>
             </div>
             <picture className='hero-banner'>

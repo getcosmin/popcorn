@@ -34,8 +34,6 @@ export default function Flux() {
 
     }
 
-    console.log(currentMovies)
-
     return (
 
         <>

@@ -45,7 +45,6 @@ export default function FilterPage({genres, movieFilter, filterMovies, toggleFil
                 <ButtonClose closeFunction={toggleFilter} />
                 <div className='filter-page-nav'>
                     <p>Genres List</p>
-                <ButtonExpand eventHandler = {toggleGenresList} />
                 </div>
                 <ul className='genres-list list-none' data-type={isGenreFilterEnabled}>
                     {currentMovieGenres.map(genre => 

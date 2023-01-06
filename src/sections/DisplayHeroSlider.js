@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 
 // 01 - Components
 import HeroSliderBody from './components/HeroSliderBody'
+import ButtonsHeroSlider from './components/sub-components/ButtonsHeroSlider'
 import MovieSliderText from '../assets/text/MovieSliderText'
 
 export default function DisplayHeroSlider(movie) {
@@ -48,6 +49,7 @@ export default function DisplayHeroSlider(movie) {
 
     return (
         <section className='hero'>
+            {window.innerWidth > 1024 && <ButtonsHeroSlider />}
             <div className='hero-image-slider'>
                 {MovieSliderText.map(movie =>  <HeroSliderBody movie = {{...movie}}/>)}
 

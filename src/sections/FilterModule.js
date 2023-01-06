@@ -7,6 +7,8 @@ import PageFilter from './components/PageFilter'
 
 export default function FilterModule({genres, movieFilter, filterMovies}) {
 
+    console.log(genres)
+
     const [hasFilterEnabled, setFilterEnabled] = useState(false)
 
     function toggleMovieFilter() {
@@ -15,6 +17,7 @@ export default function FilterModule({genres, movieFilter, filterMovies}) {
 
     return(
         <>
+
             { hasFilterEnabled && createPortal (
                 <PageFilter genres = {genres} 
                             movieFilter = {movieFilter} 
