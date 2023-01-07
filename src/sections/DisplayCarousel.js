@@ -5,7 +5,7 @@ import { useState } from "react";
 import CarouselNavigation from './components/sub-components/CarouselNavigation'
 import HeadlineSmall from './components/HeadlineSmall'
 import SmallCard from './components/sub-components/SmallCard'
-import SkeletonSmallCard from "./skeleton/SkeletonSmallCard";
+import SkeletonCardPotrait from "./skeleton/SkeletonCardPotrait";
 
 
 export default function Carousel(props) {
@@ -49,7 +49,7 @@ export default function Carousel(props) {
                 
                 <HeadlineSmall  title = {props.title} />
                 
-                { isSkeletonEnabled ? <div className='card-scroll-frame'> { cards.map(card => <SkeletonSmallCard/>) } </div> : null}
+                { isSkeletonEnabled ? <div className='card-scroll-frame'> { cards.map(card => <SkeletonCardPotrait/>) } </div> : null}
         
                 <div className='card-scroll-frame'>
                     

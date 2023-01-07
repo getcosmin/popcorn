@@ -4,6 +4,7 @@ import MovieLandscape from './components/MovieLandscape'
 
 export default function FluxLandscape({movies}) {
 
+
     return(
         <section>
             <HeadlineSmall  title = 'Movies' />

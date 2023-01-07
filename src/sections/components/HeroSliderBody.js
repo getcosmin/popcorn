@@ -5,7 +5,7 @@ export default function HeroSliderBody({movie}) {
     
 
     return (
-        <div className='body-card'>
+        <div className='hero-banner'>
 
             <div className='hero-body wrapper'>
                 <header className='slider-headline'>
@@ -13,7 +13,7 @@ export default function HeroSliderBody({movie}) {
                     <ButtonPlayTrailer/>
                 </header>
             </div>
-            <picture className='hero-banner'>
+            <picture className='hero-body-image'>
                 <source media='(min-width: 1024px)' srcset ={movie.image.landscape}/>
                 <source media='(max-width: 1023px)' srcset ={movie.image.portrait}/>
                 <img className='hero-image-large' src={movie.image.landscape}/>

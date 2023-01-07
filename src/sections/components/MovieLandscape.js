@@ -4,7 +4,7 @@ export default function MovieLandscape({movie, openDisplay}) {
 
     return (
 
-        <div className='movie-landscape-card'>
+        <div className='movie-card-landscape'>
             <header className='landscape-header'>
                 <div>
                     <span>{movie.release_date}</span>

@@ -1,6 +1,7 @@
 // 00 - React
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { createPortal } from 'react-dom'
+import { Link } from 'react-router-dom'
 
 // 01 - Components
 import PageSearchResults from './components/PageSearchResults'
@@ -19,6 +20,21 @@ export default function Navigation() {
   const [hasSearchEnabled, setSearchEnabled] = useState(false)
 
   const API_LINK = 'https://api.themoviedb.org/3/search/movie?api_key=350845626c05bcf9e670b1135deffe7b&language=en-US&query=';
+
+  useEffect(() => {
+    const selectNavbar = document.querySelector('.navbar')
+    window.addEventListener('scroll', navigationMenu)
+
+    function navigationMenu() {
+      const selectNavbar = document.querySelector('.navbar')
+      if(window.scrollY > 150) selectNavbar.classList.add('navbar-active')
+      if(window.scrollY < 150) selectNavbar.classList.remove('navbar-active')
+   
+    }
+
+  }, []) 
+
+
 
   function openSearchBar() {
     setSearchEnabled(true)
@@ -93,6 +109,17 @@ export default function Navigation() {
               <div className='navbar-brand'>
 
                 <PopcornLogo/>
+
+                { window.innerWidth > 1024 &&
+                  <div className="navigation-links">
+                    <Link className='navigation-link' to='/'> 
+                      Home
+                    </Link>
+                    <Link className='navigation-link' to='/Flux'>
+                      Discover Flux
+                    </Link>
+                  </div>     
+                }
 
               {!hasSearchEnabled && !hasMovieDisplayEnabled ?
                   <ButtonSearch openSearchBar = {openSearchBar} />     

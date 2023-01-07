@@ -31,7 +31,7 @@ export default function FilterPage({genres, movieFilter, filterMovies, toggleFil
         const allButtons = document.querySelectorAll('.genre-option')
         allButtons.forEach(element => element.classList.remove('genre-active'))
         event.target.classList.toggle('genre-active')
-        movieFilter(event.target.id);
+        movieFilter(event.target.id, event.target.innerText);
     }
 
     function filterEventButton(event) {
@@ -41,7 +41,7 @@ export default function FilterPage({genres, movieFilter, filterMovies, toggleFil
 
     return (
         <section className='filter-page'>
-            <div className='wrapper'>
+            <div className='wrapper filter-modal'>
                 <ButtonClose closeFunction={toggleFilter} />
                 <div className='filter-page-nav'>
                     <p>Genres List</p>
@@ -51,7 +51,9 @@ export default function FilterPage({genres, movieFilter, filterMovies, toggleFil
                            <span id={genre.id} className="genre-option" onClick={buttonAnimation}>{genre.name}</span>  
                     )}
                 </ul>
-                <button className='button-primary' onClick={filterEventButton}>Filter Movies</button>
+                <div className='genre-submit'>
+                    <button className='button-primary margin-none' onClick={filterEventButton}>Filter Movies</button>
+                </div>
             </div>
         </section>
     )

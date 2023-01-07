@@ -1,7 +1,7 @@
 export default function DisplayHeroStatic({text}) {
     return (
         <section className='hero'>
-            <div className='hero-body wrapper'>
+            <div className='hero-body body-static wrapper'>
                 <header className='headline'>
                     <h1 className='hero-title'>{text.title}</h1>
                     <p className='hero-subtitle'>{text.subtitle}</p>

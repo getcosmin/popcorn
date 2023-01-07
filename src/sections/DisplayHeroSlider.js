@@ -12,19 +12,19 @@ export default function DisplayHeroSlider(movie) {
         const CARD = {
             position: 1,
             prevScroll: 0,
-            size: document.querySelector('.hero-image-slider').clientWidth,
+            size: document.querySelector('.hero-scroll-frame').clientWidth,
         }
-        const heroSlider = document.querySelector('.hero-image-slider')
+        const heroSlider = document.querySelector('.hero-scroll-frame')
 
-        const displayProgress = document.querySelectorAll('.slider-circle')
-        displayProgress[CARD.position - 1].classList.add('circle-active')
+        const displayProgress = document.querySelectorAll('.pagination-circle')
+        displayProgress[CARD.position - 1].classList.add('active')
 
         heroSlider.addEventListener('scroll', handleScroll)
 
 
 
         function handleScroll() {
-            const heroSlider = document.querySelector('.hero-image-slider')
+            const heroSlider = document.querySelector('.hero-scroll-frame')
             const currentScroll = heroSlider.scrollLeft
             if(currentScroll >= CARD.prevScroll && currentScroll >= CARD.size * CARD.position) {
                 CARD.position = CARD.position + 1;
@@ -35,9 +35,9 @@ export default function DisplayHeroSlider(movie) {
             }
             console.log(`Current Scroll: ${currentScroll} AND ${CARD.position}`)
             function updateProgress() {
-                const displayProgress = document.querySelectorAll('.slider-circle')
-                displayProgress.forEach(element => element.classList.remove('circle-active'))
-                displayProgress[CARD.position -1].classList.add('circle-active')
+                const displayProgress = document.querySelectorAll('.pagination-circle')
+                displayProgress.forEach(element => element.classList.remove('active'))
+                displayProgress[CARD.position -1].classList.add('active')
             }
         }
         heroSlider.addEventListener('scroll', () => {
@@ -50,12 +50,12 @@ export default function DisplayHeroSlider(movie) {
     return (
         <section className='hero'>
             {window.innerWidth > 1024 && <ButtonsHeroSlider />}
-            <div className='hero-image-slider'>
+            <div className='hero-scroll-frame'>
                 {MovieSliderText.map(movie =>  <HeroSliderBody movie = {{...movie}}/>)}
 
             </div>
-            <div className='hero-slider-counter'>
-                {MovieSliderText.map(movie => <span className='slider-circle'></span>)}
+            <div className='hero-slider-pagination'>
+                {MovieSliderText.map(movie => <span className='pagination-circle'></span>)}
             </div>
 
         </section>

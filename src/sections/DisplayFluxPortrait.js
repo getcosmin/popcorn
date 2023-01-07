@@ -1,7 +1,7 @@
 // 01 - Components
 import MoviesRender from './components/MoviesRender'
 
-export default function MovieList(movies, title) {
+export default function MovieList(movies) {
 
     return(
         <section>

@@ -95,8 +95,8 @@ export default function BottomNavigation(props) {
                 </Link>
                 <button className='navigation-button' onClick={props.switch}>
                     <div className='toggle'>
-                        <div className='toggle-body'>
-                            <span className='toggle-button'></span>
+                        <div className='toggle-body' data-button={props.animation}>
+                            <span className='button-toggle-circle'></span>
                         </div>
                     </div>
                     <span className='navigation-text'>Light Mode</span>
