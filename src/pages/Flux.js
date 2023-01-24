@@ -31,6 +31,8 @@ export default function Flux() {
 
     const genreList = useFetchGenres('https://api.themoviedb.org/3/genre/movie/list?api_key=350845626c05bcf9e670b1135deffe7b')
    
+    console.log(`Genres are: ${genreList}`)
+
     function addMovieFilter(id, movieGenres) {
         setMoviesGenre(movieGenres)
         setMovieFilter(id)

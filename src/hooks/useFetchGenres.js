@@ -10,7 +10,7 @@ export default function useFetchGenre(link) {
         async function fetchMovieGenres() {
             const response = await fetch(link)
             const data = await response.json()
-
+            console.log(data)
             setGenres(data.genres)
 
         }

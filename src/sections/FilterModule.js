@@ -27,7 +27,7 @@ export default function FilterModule({genres, movieFilter, filterMovies, sortAll
                             filterMovies = {filterMovies}
                             toggleFilter = {toggleMovieFilter}
                 />
-                , document.querySelector('.background')) }
+                , document.querySelector('body')) }
 
             <section className='filter wrapper'>
 
