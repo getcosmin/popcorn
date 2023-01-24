@@ -27,7 +27,9 @@
     --color-primary-900-60: rgb(13 15 18 / 60%);
 
 
-    --color-accent: rgb(230, 64, 64);
+    --color-accent: rgb(84, 124, 248);
+    --color-accent-400: rgb(84, 124, 248, 0.4);
+    --color-accent-100: rgb(84, 124, 248, 0.1);
 
     --title-h1: clamp(4rem,4rem + 1vw,9.6rem);
     --title-h2: clamp(2rem,2rem + 1vw,3.2rem);
@@ -52,21 +54,6 @@
     
     --radius-small: 0.4rem;
 }
-[data-theme='light'] {
-    --color-background-40: rgb(255, 255, 255, 0.4);
-    --color-background-60: #2f353d;
-    --color-primary-900: #ffffff;
-    --color-primary-800: #f2f5f7;
-    --color-primary-700: #c8cbce;
-    --color-primary-600: #778089;
-    --color-primary-500: #5e6977;
-    --color-primary-400: #434d5a;
-    --color-primary-300: #2f353d;
-    --color-primary-200: #171a1e;
-    --color-primary-100: #0d0f12;
-    --color-primary-050: #f2f5f7;
-
-}
 [data-active='false'] {
     fill: transparent;
     stroke: var(--color-primary-300);
@@ -75,10 +62,8 @@
     stroke: none;
     fill: var(--color-primary-300);
 }
-.background {
-    background-color: var(--color-primary-900);
-}
 html {
+    background: var(--color-primary-900);
     font-family: 'Montserrat';
     font-size: 62.5%;
 }
@@ -198,7 +183,6 @@ button {
     padding: 1.2rem 2.4rem;
     display: block;
     width: fit-content;
-    --color-primary-900: #0d0f12;
     cursor: pointer;
     color: var(--color-primary-900);
     transition: 100ms;
@@ -350,7 +334,6 @@ CARD Scroller
     background: var(--color-primary-900);
 }
 .search-icon {
-    fill: var(--color-primary-100);
     height: 1.6rem;
     width: auto;
 }
@@ -368,16 +351,17 @@ CARD Scroller
     color: var(--color-primary-100);
 }
 .search-box {
+    fill: var(--color-primary-100);
     margin: var(--spacing-02) 0 var(--spacing-01) 0;
     padding: 0.8rem 0.8rem;
     display: flex;
     gap: 0.4rem;
     align-items: center;
-    border: 0.1rem solid var(--color-primary-800);
+    border: 0.1rem solid var(--color-accent-400);
     border-radius: var(--radius-small);
     height: 2.4rem;
     z-index: 10;
-    background-color: var(--color-primary-900-60);
+    background-color: var(--color-accent-100);
 }
 
 .something {
@@ -393,7 +377,7 @@ FILTER
     width: -webkit-fill-available;
     min-height: 100vh;
     background-color: var(--color-primary-900-60);
-    z-index: 100;
+    z-index: 120;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -554,7 +538,6 @@ DISPLAY HERO Max
     grid-area: 1/1;
 }
 .hero-title {
-    --color-primary-100: #e3e5e8;;
     color: var(--color-primary-100);
 }
 .headline {
@@ -562,7 +545,6 @@ DISPLAY HERO Max
 }
 .hero-subtitle {
     margin-block-end: var(--spacing-01);
-    --color-primary-300: #9399a1;
     color: var(--color-primary-300);
 }
 .hero-image-static, .hero-body-image {
@@ -741,6 +723,9 @@ DISPLAY Movies
 .display-title {
     margin-block-start: var(--spacing-01);
 }
+.display-headline {
+    margin-top: var(--spacing-02);
+}
 /* -------------------- 
 FLUX Movies
 -------------------- */
@@ -847,7 +832,7 @@ DESKTOP CSS
         width: max(4vw, 64px);
     }
     .carousel-nav-icon {
-        fill: var(--color-primary-100);
+        fill: var(--color-primary-000);
         height: var(--icon-size-huge);
         width: auto;
     }
@@ -934,7 +919,7 @@ DESKTOP CSS
     transition: 600ms;
     border: 1px solid var(--color-accent);
     color: var(--color-accent);
-    background-color: rgb(230, 64, 64, 0.1);
+    background-color: var(--color-accent-100);
 }
 .hide {
     display: none;
@@ -964,4 +949,10 @@ DESKTOP CSS
 }
 .mt20 {
     margin-top: var(--spacing-04);
+}
+.button-round:hover {
+    transition: 600ms;
+    background-color: var(--color-accent-400);
+    fill: var(--color-primary-000);
+    border: 1px solid var(--color-accent);
 }

@@ -52,7 +52,7 @@ export default function MovieDisplay({movieID}) {
             </div>
             <header className='display-headline wrapper'>
                 <div>
-                    { RatingBadge(movieDetails.vote_average) }
+                    { RatingBadge(parseFloat(movieDetails.vote_average).toFixed(2)) }
                     <h2 className='display-title'>{movieDetails.title}</h2>
                     <div className='display-genres'>
                        {renderMovieGenres}

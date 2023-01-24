@@ -66,7 +66,7 @@ export default function DisplayHeroSlider(movie) {
                 {MovieSliderText.map(movie =>  <HeroSliderBody movie = {{...movie}}/>)}
 
             </div>
-            <div className='hero-Slider-pagination'>
+            <div className='hero-slider-pagination'>
                 {MovieSliderText.map(movie => <span className='pagination-circle'></span>)}
             </div>
 

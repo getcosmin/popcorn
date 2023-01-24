@@ -12,9 +12,6 @@ import { useEffect } from 'react'
 
 
 export default function App() {
-  const [theme, setTheme] = useLocalStorage('theme', 'dark')
-  const [hasToggleEnabled, setToggleEnabled] = useLocalStorage('hasToggleEnabled', 'inactive')
-
 
   useEffect(() => {
     console.log('closed')
@@ -28,15 +25,9 @@ export default function App() {
       }    
     }
   }, [])
-
-  const switchTheme = () => { 
-    setTheme(value => value === 'dark' ? 'light' : 'dark')
-    setToggleEnabled(value => value === 'inactive' ? 'active' : 'inactive')
-  }
-  
+ 
   return (
-
-    <div className='background' data-theme={theme}>
+      <>
 
       <Navigation />
       
@@ -46,16 +37,12 @@ export default function App() {
         <Route path='/notifications' element = { <Notifications />} />
       </Routes>
 
-      {window.innerWidth < 1024 ? <NavigationBottom 
-                                      switch = {switchTheme}
-                                      animation = {hasToggleEnabled}
-                                  />
-                                  : null
-      }
+      {window.innerWidth < 1024 ? <NavigationBottom /> : null }
 
       <Footer />  
 
-    </div>
+      </>
+
   );
 }
 

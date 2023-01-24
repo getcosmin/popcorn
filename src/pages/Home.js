@@ -15,13 +15,17 @@ export default function Home() {
           />
 
         <DisplayCarousel
-          genre = {'Science-Fiction'}
-          title = {'SciFi'}
+          carousel = {{
+            title: 'SciFi',
+            genre: '878'
+          }}
         />
 
         <DisplayCarousel
-          genre = {'Comedy'}
-          title = {'Comedy'}
+          carousel = {{
+            title: 'History',
+            genre: '36'
+          }}
         />
 
     </>
