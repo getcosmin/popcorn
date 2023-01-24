@@ -75,9 +75,6 @@
     stroke: none;
     fill: var(--color-primary-300);
 }
-.button-icon {
-    fill: var(--color-primary-300);
-}
 .background {
     background-color: var(--color-primary-900);
 }
@@ -239,7 +236,7 @@ NAVBAR
     padding: var(--spacing-01) 0;
     transition: 600ms;
     position: fixed;
-    z-index: 100;
+    z-index: 110;
     width: 100%;
 
 }
@@ -402,23 +399,23 @@ FILTER
     justify-content: center;
 }
 .filter-modal {
+    padding: var(--spacing-02);
+    height: 100vh;
+    min-width: calc(100vw - var(--spacing-04));
     display: grid;
-    grid-template-rows: min-content min-content max-content;
-    width: 50vw;
-    height: 50vh;
+    gap: var(--spacing-01);
+    grid-template-rows: repeat(4, min-content);
     background-color: var(--color-primary-800);
-    border-radius: var(--radius-small);
-    padding: var(--spacing-04);
+}
+
+.filter-subtitle {
+    font-size: var(--text-large);
+    color: var(--color-primary-100);
 }
 .genre-submit {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-}
-.filter-page-nav {
-    margin-top: var(--spacing-05);
-    display: flex;
-    justify-content: space-between;
 }
 .genres-list {
     display: grid;
@@ -529,7 +526,7 @@ BOTTOM Navigation
     width: -webkit-fill-available;
     left: 0px;
     top: 0;
-    z-index: 10;
+    z-index: 100;
 }
 .movie-cover {
     z-index: 1000;
@@ -761,7 +758,21 @@ FLUX Movies
 .filter {
     padding: 0 0 var(--spacing-03) 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+}
+.sorting {
+    display: flex;
+    gap: var(--spacing-01);
+    align-items: center;
+}
+.sort-field {
+    color: var(--color-primary-200);
+    font-size: var(--text-normal);
+    padding: var(--spacing-01);
+    border-radius: var(--radius-small);
+    border: none;
+    height: var(--icon-size-large);
+    background: transparent;
 }
 
 /* -------------------- 
@@ -769,6 +780,14 @@ DESKTOP CSS
 -------------------- */
 
 @media (min-width: 1024px) {
+    .filter-modal {
+        min-width: auto;
+        grid-template-rows: min-content min-content max-content;
+        width: 50vw;
+        height: 70vh;
+        border-radius: var(--radius-small);
+        padding: var(--spacing-04);
+    }
     .body-static {
         align-items: center;
         display: flex;
@@ -942,4 +961,7 @@ DESKTOP CSS
 }
 .margin-none {
     margin: 0;
+}
+.mt20 {
+    margin-top: var(--spacing-04);
 }

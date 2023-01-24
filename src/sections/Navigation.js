@@ -44,9 +44,13 @@ export default function Navigation() {
     setMovieSearchTitle(event.target.value)
   }
 
+  function getMovieFromSearch(event) {
+    setMovieSearchID([event.target.closest('.movie-card-landscape').id])
+  }
+
   function openDisplay(event) {
-    document.querySelector('.search-box').classList.add('hide')
-    setMovieSearchID([event.target.id])
+    document.querySelector('.search-box').classList.add('hide');
+    getMovieFromSearch(event)
     setMovieSearchTitle('')
     setMoviesSearchResults([])
     setMovieDisplayEnabled(true)
@@ -83,13 +87,13 @@ export default function Navigation() {
   }
 
   function closeSearchWindow() {
-    console.log('butonClose pressed')
     setUserSearching(false)
     setMoviesSearchResults([])
     document.body.classList.remove('disable-scroll')
     document.querySelector('.navbar').classList.remove('search-active')
     setMovieSearchTitle('')
   }
+
   function closeSearch() {
     setSearchEnabled(false)
     closeSearchWindow()

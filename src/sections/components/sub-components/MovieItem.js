@@ -28,7 +28,7 @@ const renderMovies = movies.movies.map(movie => {
    )
 })
    return (
-      <>
+      <> 
          {renderMovies} 
       </>
    )

@@ -4,7 +4,7 @@ export default function MovieLandscape({movie, openDisplay}) {
 
     return (
 
-        <div className='movie-card-landscape'>
+        <div className='movie-card-landscape' id={movie.id} onClick={openDisplay}>
             <header className='landscape-header'>
                 <div>
                     <span>{movie.release_date}</span>
@@ -14,8 +14,6 @@ export default function MovieLandscape({movie, openDisplay}) {
             <img className='landscape-image flux-movie-img' 
                             src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} 
                             alt={movie.title}
-                            id={movie.id}
-                            onClick={openDisplay}
             />
         </div>
         

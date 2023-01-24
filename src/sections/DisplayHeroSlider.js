@@ -9,52 +9,64 @@ import MovieSliderText from '../assets/text/MovieSliderText'
 export default function DisplayHeroSlider(movie) {
 
     useEffect(() => {
-        const CARD = {
-            position: 1,
-            prevScroll: 0,
-            size: document.querySelector('.hero-scroll-frame').clientWidth,
-        }
-        const heroSlider = document.querySelector('.hero-scroll-frame')
 
-        const displayProgress = document.querySelectorAll('.pagination-circle')
-        displayProgress[CARD.position - 1].classList.add('active')
+        class Slider {
+            static imagePosition = 1;
+            static previousScrollPosition = 0;
+            static currentScrollPosition = 0;
+            static imageSize = document.querySelector('.hero-scroll-frame').clientWidth;
+            static scrollWindow = document.querySelector('.hero-scroll-frame');
 
-        heroSlider.addEventListener('scroll', handleScroll)
+            static checkScrollDirection() {
 
+                if (Slider.currentScrollPosition >= Slider.previousScrollPosition && 
+                    Slider.currentScrollPosition >= (Slider.imageSize * Slider.imagePosition)) {
+                       
+                        Slider.imagePosition = Slider.imagePosition + 1;
+                        SliderProgress.updateProgress()
 
+                } else if (Slider.currentScrollPosition < Slider.previousScrollPosition &&
+                    Slider.currentScrollPosition === (Slider.imageSize * (Slider.imagePosition - 2))) {
 
-        function handleScroll() {
-            const heroSlider = document.querySelector('.hero-scroll-frame')
-            const currentScroll = heroSlider.scrollLeft
-            if(currentScroll >= CARD.prevScroll && currentScroll >= CARD.size * CARD.position) {
-                CARD.position = CARD.position + 1;
-                updateProgress()
-            } else if (currentScroll < CARD.prevScroll && currentScroll == (CARD.size) * (CARD.position - 2)) {
-                CARD.position = CARD.position - 1; 
-                updateProgress()
-            }
-            console.log(`Current Scroll: ${currentScroll} AND ${CARD.position}`)
-            function updateProgress() {
-                const displayProgress = document.querySelectorAll('.pagination-circle')
-                displayProgress.forEach(element => element.classList.remove('active'))
-                displayProgress[CARD.position -1].classList.add('active')
+                        Slider.imagePosition = Slider.imagePosition - 1;
+                        SliderProgress.updateProgress()
+
+                }
             }
         }
-        heroSlider.addEventListener('scroll', () => {
-            const currentScroll = heroSlider.scrollLeft
-            CARD.prevScroll = currentScroll;
+
+
+        Slider.scrollWindow.addEventListener('scroll', () => {
+            Slider.currentScrollPosition = Slider.scrollWindow.scrollLeft;
+
+            Slider.checkScrollDirection()
+
+            Slider.previousScrollPosition = Slider.scrollWindow.scrollLeft;
         })
+
+        class SliderProgress {
+            static selectProgress = document.querySelectorAll('.pagination-circle');
+
+            static updateProgress() {
+                SliderProgress.selectProgress.forEach(element => element.classList.remove('active'));
+                SliderProgress.selectProgress[Slider.imagePosition - 1].classList.add('active');
+            }
+
+        }
+
+        SliderProgress.updateProgress()
 
     }, [])
 
+
     return (
         <section className='hero'>
-            {window.innerWidth > 1024 && <ButtonsHeroSlider />}
+            {window.innerWidth > 1024 && <ButtonsHeroSlider/>}
             <div className='hero-scroll-frame'>
                 {MovieSliderText.map(movie =>  <HeroSliderBody movie = {{...movie}}/>)}
 
             </div>
-            <div className='hero-slider-pagination'>
+            <div className='hero-Slider-pagination'>
                 {MovieSliderText.map(movie => <span className='pagination-circle'></span>)}
             </div>
 

@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import FilterModule from '../sections/FilterModule'
 import useFetchGenres from '../hooks/useFetchGenres'
 import DisplayFluxPortrait from '../sections/DisplayFluxPortrait'
+import SkeletonDisplayFluxPortrait from '../sections/skeleton/SkeletonDisplayFluxPortrait'
 
 export default function Flux() {
     const [movieFilter, setMovieFilter] = useState(null);
@@ -49,6 +50,7 @@ export default function Flux() {
         }
     }
 
+
     return (
 
         <>
@@ -59,13 +61,15 @@ export default function Flux() {
                     }}
             />
             { hasMovieFilterEnaled ? <DisplayHeadlineSmall title='Movies' moviesGenre={moviesGenre} /> : <DisplayHeadlineSmall title='Movies' /> }
-    
-            { genreList[0] !== undefined ?  
-                <FilterModule   genres = {genreList} 
-                                movieFilter = {addMovieFilter} 
-                                filterMovies={filterMovies}
-                /> 
-                : null}
+            
+            <FilterModule   genres = {genreList} 
+                            movieFilter = {addMovieFilter} 
+                            filterMovies={filterMovies}
+            /> 
+
+            
+            { currentMovies[0] == undefined ? <SkeletonDisplayFluxPortrait/> : null }
+
 
             { currentMovies[0] !== undefined ? <DisplayFluxPortrait movies = {currentMovies} movieCategory = {movieFilter}/> : console.log('Loading Movies...')}    
             

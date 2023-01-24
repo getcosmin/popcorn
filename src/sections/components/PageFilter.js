@@ -25,7 +25,7 @@ export default function FilterPage({genres, movieFilter, filterMovies, toggleFil
             }
         })
 
-    }, [genres])
+    }, [])
 
     function buttonAnimation(event) {
         const allButtons = document.querySelectorAll('.genre-option')
@@ -44,15 +44,25 @@ export default function FilterPage({genres, movieFilter, filterMovies, toggleFil
             <div className='wrapper filter-modal'>
                 <ButtonClose closeFunction={toggleFilter} />
                 <div className='filter-page-nav'>
-                    <p>Genres List</p>
-                </div>
-                <ul className='genres-list list-none' data-type={isGenreFilterEnabled}>
-                    {currentMovieGenres.map(genre => 
+                    <p className='filter-subtitle'>Select Movie Genre:</p>
+                
+                    <ul className='genres-list list-none' data-type={isGenreFilterEnabled}>
+                        {currentMovieGenres.map(genre => 
                            <span id={genre.id} className="genre-option" onClick={buttonAnimation}>{genre.name}</span>  
-                    )}
-                </ul>
+                        )}
+                    </ul>
+                </div>
+                <div className='filter-page-nav'>
+                    <p className='filter-subtitle'>Sort Movies:</p>
+                    <select className='sort-field'>
+                        <option>By Movie Title (A - Z)</option>
+                        <option>By Movie Title (Z - A)</option>
+                        <option>By Release Date (A - Z)</option>
+                        <option>By Release Date (Z - A)</option>
+                    </select>
+                </div>
                 <div className='genre-submit'>
-                    <button className='button-primary margin-none' onClick={filterEventButton}>Filter Movies</button>
+                    <button className='button-primary margin-none mt20' onClick={filterEventButton}>Filter Movies</button>
                 </div>
             </div>
         </section>

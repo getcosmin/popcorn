@@ -3,12 +3,14 @@ import ArrowRight from '../../images/icon-arrow-right'
 
 
 function slideBannerRight() {
-    const scrollArea = document.querySelector('.hero-image-slider')
-    scrollArea.scrollLeft += 1900
+    const scrollWindow = document.querySelector('.hero-scroll-frame')
+    const bannerSize = document.querySelector('.hero-scroll-frame').clientWidth
+    scrollWindow.scrollLeft += bannerSize
 }
 function slideBannerLeft() {
-    const scrollArea = document.querySelector('.hero-image-slider')
-    scrollArea.scrollLeft -= 1900
+    const scrollWindow = document.querySelector('.hero-scroll-frame')
+    const bannerSize = document.querySelector('.hero-scroll-frame').clientWidth
+    scrollWindow.scrollLeft -= bannerSize
 }
 
 
