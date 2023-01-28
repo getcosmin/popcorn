@@ -255,18 +255,26 @@ CARD Scroller
 }
 .card-image, .flux-movie-img {
     transition: 300ms;
-    border: 2px solid transparent;
     border-radius: 0.8rem;
     cursor: pointer;
     width: 100%;
     height: auto;
 }
-.card-image:hover, .flux-movie-img:hover {
-    border: 2px solid var(--color-accent);
+.image-portrait {
+    aspect-ratio: 2 / 3;
 }
-.card-image-placeholder {
+.card-image:hover, .flux-movie-img:hover {
+    outline: 2px solid var(--color-accent);
+}
+.card-image-placeholder, .card-placeholder-landscape {
     background-color: var(--color-primary-700);
     border-radius: var(--spacing-01);
+    
+}
+.card-placeholder-landscape {
+    aspect-ratio: 16 / 9;
+}
+.card-image-placeholder {
     aspect-ratio: 2 / 3;
 }
 .placeholder-body {
@@ -635,6 +643,7 @@ MOVIE Search Results
 }
 .movie-card-landscape {
     display: grid;
+    flex: 0 0 80vw;
 
 }
 .landscape-header, .landscape-image {
@@ -846,7 +855,7 @@ DESKTOP CSS
     }
     .carousel-nav-button:nth-child(2) {
         border-radius: 0 var(--spacing-01) var(--spacing-01) 0;
-        right: calc(var(--spacing-06) - 2px)
+        right: var(--spacing-04);
     }
     .navigation-links {
         flex-grow: 1;
@@ -893,7 +902,14 @@ DESKTOP CSS
         transition: 600ms;
         min-width: auto;
         --card-number: 8;    
-        flex: 0 0 calc(100% / var(--card-number) - var(--spacing-02));
+        flex: 0 0 calc(100vw / var(--card-number) - 28px)
+    }
+    .card-landscape {
+        scroll-snap-align: start;
+        transition: 600ms;
+        min-width: auto;
+        --card-number: 4;    
+        flex: 0 0 calc(100% / var(--card-number) - 12px);
     }
     .flux-movies {
         grid-template-columns: repeat(8, 1fr);

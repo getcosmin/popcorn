@@ -23,6 +23,8 @@ export default function CarouselNavigation() {
 
     }, [window.innerWidth])
 
+
+
     const slideCardRight = event => event.target.closest('.card-scroll-frame').scrollLeft += 300;
 
     const slideCardLeft = event => event.target.closest('.card-scroll-frame').scrollLeft -= 300;

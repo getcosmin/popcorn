@@ -1,9 +1,9 @@
-import iconSearch from "../../images/icon-search"
+import iconSearch from "../../images/icon-search";
 
-export default function ButtonSearch({openSearchBar}) {
-    return(
-        <button className='searchButton button-round' onClick={openSearchBar}>
+export default function ButtonSearch({ openSearchBar }) {
+    return (
+        <div role="button" className='searchButton button-round' onClick={openSearchBar}>
             {iconSearch}
-        </button>
-    )
+        </div>
+    );
 }

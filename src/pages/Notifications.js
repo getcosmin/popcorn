@@ -3,5 +3,5 @@ export default function Notifications() {
         <>
             <h1>Shows</h1>
         </>
-    )
+    );
 }

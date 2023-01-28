@@ -1,8 +1,8 @@
 // 00 - React
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 export default function GenreListFilter() {
-    const [movieGenres, setMovieGenres] = useState([])
+    const [movieGenres, setMovieGenres] = useState([]);
     
     useEffect(() => {
         fetchGenres()
@@ -15,10 +15,11 @@ export default function GenreListFilter() {
         }
     }, [])
 
-    console.log(movieGenres)
-    return(
-        <div className='pill-container'>
-            { movieGenres !== undefined ? movieGenres.map(genre => <p className='pill'>{genre.name}</p> ) : null }
+    return (
+        <div className="pill-container">
+            { movieGenres !== undefined 
+                ? movieGenres.map(genre => <p className="pill">{genre.name}</p> ) 
+                : null }
         </div>
-    )
+    );
 }
