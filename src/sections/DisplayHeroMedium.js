@@ -1,14 +1,12 @@
 // 01 - Components
-import HeadlineMain from "./components/HeadlineMain";
+import HeadlineMain from './components/HeadlineMain';
 
-export default function HeroMedium({content}) {
+export default function HeroMedium({ content }) {
     return (
-        
-        <section className='hero-medium'>
-            <div className='wrapper'>
+        <section className="hero-medium">
+            <div className="wrapper">
                 <HeadlineMain content = {{...content}}/>
             </div>
         </section>
-        
-    )
+    );
 }

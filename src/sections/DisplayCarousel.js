@@ -1,35 +1,31 @@
 // 00 - React
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 // 01 - Components
-import CarouselNavigation from './components/sub-components/CarouselNavigation'
-import HeadlineSmall from './components/HeadlineSmall'
-import SmallCard from './components/sub-components/SmallCard'
-import SkeletonCardPotrait from "./skeleton/SkeletonCardPotrait";
+import CarouselNavigation from './components/sub-components/CarouselNavigation';
+import HeadlineSmall from './components/HeadlineSmall';
+import SmallCard from './components/sub-components/SmallCard';
+import SkeletonCardPotrait from './skeleton/SkeletonCardPotrait';
 
 
-export default function Carousel({carousel}) {
-    
-    const [movies, setMovies] = useState([])
-    const [isSkeletonEnabled, setSkeletonEnabled] = useState(true)
+export default function Carousel({ carousel }) {
+    const [movies, setMovies] = useState([]);
+    const [isSkeletonEnabled, setSkeletonEnabled] = useState(true);
 
-    const API_LINK = 'https://api.themoviedb.org/3/discover/movie'
-    const API_KEY = 'api_key=350845626c05bcf9e670b1135deffe7b'
+    const API_LINK = 'https://api.themoviedb.org/3/discover/movie';
+    const API_KEY = 'api_key=350845626c05bcf9e670b1135deffe7b';
 
     useEffect(() => {
-
         class CarouselMovies {
             static async fetchMovies() {
                 const response = await fetch(`${API_LINK}?${API_KEY}&with_genres=${carousel.genre}`);
-                const data = await response.json()
-                setMovies(data.results)    
-                disableSkeleton(false)
+                const data = await response.json();
+                setMovies(data.results);
+                disableSkeleton(false);
             }
         }
-    
-        CarouselMovies.fetchMovies()
-
-    }, [])
+        CarouselMovies.fetchMovies();
+    }, []);
 
 
 

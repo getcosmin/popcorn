@@ -1,15 +1,13 @@
 // 01 - Components
-import MoviesRender from './components/MoviesRender'
+import MoviesRender from './components/MoviesRender';
 
-export default function MovieList(movies) {
-
-    return(
+export default function MovieList( movies ) {
+    return (
         <section>
-            <div className='wrapper'>
+            <div className="wrapper">
                 <MoviesRender movies = {{...movies}} />
-
             </div>
         </section>
 
-    )
+    );
 }

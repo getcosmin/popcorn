@@ -6,19 +6,21 @@ import MovieLandscape from './MovieLandscape';
 export default function PageSearchResults({ movies, openDisplay }) {
     return (
         <>
-        <div className='navbar-search-menu'>
+        <div className="navbar-search-menu">
 
-            <div className='movie-results'>
-                <div className='movie-list wrapper'>
+            <div className="movie-results">
+                <div className="movie-list wrapper">
                     {movies !== [] ?
-                        movies.map(movie => {
-                            if (movie.backdrop_path !== null)
+                        movies.map((movie) => {
+                            if (movie.backdrop_path !== null) {
                             return (
-                                <MovieLandscape 
+                                <MovieLandscape
+                                    key={movie.id}
                                     openDisplay = {openDisplay}
                                     movie = {movie}
                                 />
-                            )
+                            );
+                            }
                         })
                         : null
                     }
@@ -26,5 +28,5 @@ export default function PageSearchResults({ movies, openDisplay }) {
             </div>
         </div>
         </>
-    )
+    );
 }
