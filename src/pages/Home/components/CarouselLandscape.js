@@ -1,13 +1,11 @@
-// @flow
-
 // 00 - React
 import { useEffect, useState } from 'react';
 
 // 01 - Components
-import CarouselNavigation from './components/sub-components/CarouselNavigation';
-import HeadlineSmall from './components/HeadlineSmall';
-import SkeletonCardLandscape from './skeleton/SkeletonCardLandscape';
-import MovieLandscape from './components/MovieLandscape';
+import CarouselNavigation from './CarouselNavigation';
+import HeadlineSmall from '../../../sections/components/HeadlineSmall';
+import SkeletonCardLandscape from '../../../sections/skeleton/SkeletonCardLandscape';
+import MovieLandscape from '../../../sections/components/MovieLandscape';
 
 
 export default function Carousel({ carousel }) {
@@ -47,7 +45,6 @@ export default function Carousel({ carousel }) {
     return (
         <section className="carousel">
             <div className="carousel-container wrapper mr00 card-container">
-                
                 <HeadlineSmall  title = {carousel.title} />
                 { isSkeletonEnabled ?
                     <div className="card-scroll-frame"> { cards.map(card => <SkeletonCardLandscape/>) } </div> 

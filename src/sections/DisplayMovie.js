@@ -42,9 +42,12 @@ export default function MovieDisplay({ movieID }) {
     return (
         <section className="display">
             <div className="movie-cinema">
-                <iframe className="display-hero" width="1920" height="1080" src={`https://www.youtube.com/embed/${movieTrailer}?rel=0&version=3&autoplay=1&controls=0`} 
+                <iframe className="display-hero" width="1920" height="1080"
+                    src={`https://www.youtube.com/embed/${movieTrailer}?rel=0&version=3&autoplay=1&controls=0`}
                     title="YouTube video player" frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                    allow="accelerometer; autoplay; clipboard-write;
+                    encrypted-media; gyroscope; picture-in-picture"
+                     allowfullscreen>
                 </iframe>
             </div>
             <div className="display-nav wrapper">

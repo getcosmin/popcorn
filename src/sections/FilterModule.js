@@ -24,7 +24,7 @@ export default function FilterModule({ genres, movieFilter, filterMovies, sortAl
                 />
                 , document.querySelector('body')) }
 
-            <section className='filter wrapper'>
+            <section className="filter wrapper">
 
                 <button className="button-filter button-round" onClick={toggleMovieFilter}>
                     <svg width="48" height="48" viewBox="0 0 48 48">

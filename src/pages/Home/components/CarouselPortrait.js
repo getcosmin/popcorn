@@ -2,10 +2,10 @@
 import { useEffect, useState } from 'react';
 
 // 01 - Components
-import CarouselNavigation from './components/sub-components/CarouselNavigation';
-import HeadlineSmall from './components/HeadlineSmall';
-import SmallCard from './components/sub-components/SmallCard';
-import SkeletonCardPotrait from './skeleton/SkeletonCardPotrait';
+import CarouselNavigation from './CarouselNavigation';
+import HeadlineSmall from '../../../sections/components/HeadlineSmall';
+import SmallCard from '../../../sections/components/sub-components/SmallCard';
+import SkeletonCardPotrait from '../../../sections/skeleton/SkeletonCardPotrait';
 
 
 export default function Carousel({ carousel }) {

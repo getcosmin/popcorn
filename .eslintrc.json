@@ -10,8 +10,13 @@
     "overrides": [
     ],
     "parserOptions": {
+        "parser": "babel-eslint",
         "ecmaVersion": "latest",
-        "sourceType": "module"
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true,
+            "experimentalObjectRestSpread": true
+          }
     },
     "plugins": [
         "react"

@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 // 01 - Components
 import BottomNavButton from './components/sub-components/BottomNavigationButton';
-import iconHome from './images/icon-home';
-import iconFlux from './images/icon-flux';
-import iconBell from './images/icon-bell';
+import iconHome from '../assets/icons/icon-home';
+import iconFlux from '../assets/icons/icon-flux';
+import iconBell from '../assets/icons/icon-bell';
 
 // 02 - Custom Hooks
 import useLocalStorage from '../hooks/useLocalStorage';

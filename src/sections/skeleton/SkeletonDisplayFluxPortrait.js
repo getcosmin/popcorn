@@ -17,8 +17,8 @@ export default function SkeletonDisplayFluxPortrait() {
 
     return (
         <section>
-            <div className='wrapper'>
-                <div className='flux-movies'>
+            <div className="wrapper">
+                <div className="flux-movies">
                     {isSkeletonCardEnabled && cardsNumber.map((card) => {
                         return <SkeletonCardPotrait key={card.id} />;
                     })}

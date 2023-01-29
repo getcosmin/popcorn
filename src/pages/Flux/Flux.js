@@ -1,12 +1,11 @@
-import DisplayHeadlineSmall from '../sections/components/HeadlineSmall';
-import DisplayHeroStatic from '../sections/DisplayHeroStatic';
-import DisplayFluxLandscape from '../sections/DisplayFluxLandscape';
-import useFetch from '../hooks/useFetch';
+import DisplayHeadlineSmall from '../../sections/components/HeadlineSmall';
+import DisplayHeroStatic from '../../sections/DisplayHeroStatic';
+import useFetch from '../../hooks/useFetch';
 import { useEffect, useState } from 'react';
-import FilterModule from '../sections/FilterModule';
-import useFetchGenres from '../hooks/useFetchGenres';
-import DisplayFluxPortrait from '../sections/DisplayFluxPortrait';
-import SkeletonDisplayFluxPortrait from '../sections/skeleton/SkeletonDisplayFluxPortrait';
+import FilterModule from '../../sections/FilterModule';
+import useFetchGenres from '../../hooks/useFetchGenres';
+import DisplayFluxPortrait from './components/DisplayFluxPortrait';
+import SkeletonDisplayFluxPortrait from '../../sections/skeleton/SkeletonDisplayFluxPortrait';
 
 export default function Flux() {
     const [movieFilter, setMovieFilter] = useState(null);
@@ -79,12 +78,7 @@ export default function Flux() {
                                        movieCategory = {movieFilter} 
                    /> 
                 : console.log('Loading Movies...')}    
-            
-            { currentMovies[0] !== undefined 
-                ? <DisplayFluxLandscape movies = {currentMovies} movieCategory = {movieFilter}/> 
-                : console.log('Loading Movies...')}
 
-        
         </>
     );
 }

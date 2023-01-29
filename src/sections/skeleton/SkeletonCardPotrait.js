@@ -1,5 +1,5 @@
 // 01 - Components
-import LogoPopcornPlaceholder from '../images/logo-popcorn-placeholder';
+import LogoPopcornPlaceholder from '../../assets/icons/logo-popcorn-placeholder';
 
 export default function SkeletonCardPotrait() {
     return (

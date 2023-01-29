@@ -1,9 +1,12 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-// CUSTOM HOOK: ConsoleLog a variable, with useEFFECT to render only once.
+/**
+ * Custom Hook with console.log inside useEffect.
+ * @param {any} variable - Anything.
+ */
 
 export default function useConsoleLog(variable) {
     useEffect(() => {
-        console.log(variable)
-    }, [variable])
+        console.log(variable);
+    }, [variable]);
 }

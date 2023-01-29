@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 // 01 - Components
 import PageSearchResults from './components/PageSearchResults';
 import ButtonClose from './components/sub-components/ButtonClose';
-import PopcornLogo from './images/popcorn-logo';
-import iconSearch from './images/icon-search';
+import PopcornLogo from '../assets/icons/popcorn-logo';
+import iconSearch from '../assets/icons/icon-search';
 import DisplayMovie from './DisplayMovie';
 import ButtonSearch from './components/sub-components/ButtonSearch';
 

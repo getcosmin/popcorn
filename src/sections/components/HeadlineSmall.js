@@ -3,8 +3,8 @@ export default function HeadlineSmall({ title, moviesGenre }) {
         <header className="wrapper line">
             <h2>{title}</h2>
             {moviesGenre !== undefined 
-                ? <h2 className="title-genre"> / All {moviesGenre} </h2> 
+                ? <h2 className="title-genre"> / All {moviesGenre} </h2>
                 : null }
-        </header>  
+        </header>
     );
 }
