@@ -4,12 +4,13 @@ import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 
 // 01 - Components
-import PageSearchResults from './components/PageSearchResults';
-import ButtonClose from './components/sub-components/ButtonClose';
+import PageSearchResults from './PageSearchResults';
+import ButtonClose from './sub-components/ButtonClose';
+import ButtonSearch from './sub-components/ButtonSearch';
 import PopcornLogo from '../assets/icons/popcorn-logo';
 import iconSearch from '../assets/icons/icon-search';
 import DisplayMovie from './DisplayMovie';
-import ButtonSearch from './components/sub-components/ButtonSearch';
+
 
 export default function Navigation() {
   const [hasMovieDisplayEnabled, setMovieDisplayEnabled] = useState(false);
@@ -44,6 +45,8 @@ export default function Navigation() {
   }
 
   function openDisplay(event) {
+    document.body.classList.add('no-scroll');
+    window.scrollTo(0, 0);
     document.querySelector('.search-box').classList.add('hide');
     getMovieFromSearch(event);
     setMovieSearchTitle('');
@@ -75,10 +78,14 @@ export default function Navigation() {
 
   const closeDisplayWindow = () => {
     const searchBox = document.querySelector('.search-box');
+    const bodyNoScroll = document.querySelector('.no-scroll');
     if (searchBox !== null) {
       searchBox.classList.remove('hide');
     }
     setMovieDisplayEnabled(false);
+    if (bodyNoScroll !== null) {
+      bodyNoScroll.classList.remove('no-scroll');
+    }
   };
 
   function closeSearchWindow() {
@@ -119,10 +126,9 @@ export default function Navigation() {
                 }
 
               { !hasSearchEnabled &&
-                !hasMovieDisplayEnabled ?
-                  <ButtonSearch openSearchBar={openSearchBar} />
-                :
-                  <ButtonClose closeFunction={closeSearch} />
+                !hasMovieDisplayEnabled
+                  ? <ButtonSearch openSearchBar={openSearchBar} />
+                  : <ButtonClose closeFunction={closeSearch} />
               }
 
               </div>
@@ -131,7 +137,7 @@ export default function Navigation() {
                             {iconSearch}
                     <input
                       className="search-input"
-                      placeholder="Search for a title..."
+                      placeholder="Search for a movie..."
                       type="text"
                       onChange={searchMovieTitle}
                       value={movieSearchTitle}

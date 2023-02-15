@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 
 // 01 - Components
 import CarouselNavigation from './CarouselNavigation';
-import HeadlineSmall from '../../../sections/components/HeadlineSmall';
-import SmallCard from '../../../sections/components/sub-components/SmallCard';
-import SkeletonCardPotrait from '../../../sections/skeleton/SkeletonCardPotrait';
+import HeadlineSmall from '../../../components/HeadlineSmall';
+import SmallCard from '../../../components/sub-components/SmallCard';
+import SkeletonCardPotrait from '../../../components/skeleton/SkeletonCardPotrait';
 
 
 export default function Carousel({ carousel }) {
@@ -28,38 +28,40 @@ export default function Carousel({ carousel }) {
     }, []);
 
 
-
-    const renderMovies = movies.map(movie => {
+    const renderMovies = movies.map((movie) => {
         return (
             <SmallCard
                 key={movie.id}
                 {...movie}
             />
-        )
-    })    
+        );
+    });
 
     function disableSkeleton() {
-        setSkeletonEnabled(false)
+        setSkeletonEnabled(false);
     }
 
-    const cards = ['1','2','3','4','5','6','7','8']
- 
-    return(
-        <section className='carousel'>
-            <div className='carousel-container wrapper mr00 card-container'>
-                
-                <HeadlineSmall  title = {carousel.title} />
-                
-                { isSkeletonEnabled ? <div className='card-scroll-frame'> { cards.map(card => <SkeletonCardPotrait/>) } </div> : null}
-        
-                <div className='card-scroll-frame'>
-                    
-                { window.innerWidth > 1024 ? <CarouselNavigation/> : null }
+    const cards = ['1', '2', '3', '4', '5', '6', '7', '8'];
 
+    return (
+        <section className="carousel">
+            <div className="carousel-container wrapper mr00 card-container">
+                <HeadlineSmall title = {carousel.title} />
+                { isSkeletonEnabled ?
+                    <div className="card-scroll-frame"> { cards.map(card => <SkeletonCardPotrait />) } </div>
+                    : null}
+                <div className="card-scroll-frame">
+                { window.innerWidth > 1024 ?
+                        <CarouselNavigation selector={{
+                            skeleton: '.card-image-placeholder',
+                            card: '.card',
+                            id: 'buttons-portrait',
+                            }}
+                        />
+                        : null }
                     {renderMovies}
-
                 </div>
             </div>
         </section>
-    )
+    );
 }

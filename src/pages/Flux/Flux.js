@@ -1,17 +1,18 @@
-import DisplayHeadlineSmall from '../../sections/components/HeadlineSmall';
-import DisplayHeroStatic from '../../sections/DisplayHeroStatic';
+import HeadlineSmall from '../../components/HeadlineSmall';
+import DisplayHeroStatic from '../../components/DisplayHeroStatic';
 import useFetch from '../../hooks/useFetch';
 import { useEffect, useState } from 'react';
-import FilterModule from '../../sections/FilterModule';
+import FilterModule from './components/FilterModule';
 import useFetchGenres from '../../hooks/useFetchGenres';
 import DisplayFluxPortrait from './components/DisplayFluxPortrait';
-import SkeletonDisplayFluxPortrait from '../../sections/skeleton/SkeletonDisplayFluxPortrait';
+import SkeletonDisplayFluxPortrait from '../../components/skeleton/SkeletonDisplayFluxPortrait';
 
 export default function Flux() {
     const [movieFilter, setMovieFilter] = useState(null);
     const [currentMovies, setCurrentMovies] = useState([]);
     const [moviesGenre, setMoviesGenre] = useState('');
     const [hasMovieFilterEnaled, setMovieFilterEnabled] = useState(false);
+    const [sortMovies, setSortMovies] = useState('popularity.asc');
 
     const API_LINK = 'https://api.themoviedb.org/3/';
     const API_KEY = '350845626c05bcf9e670b1135deffe7b';
@@ -19,35 +20,32 @@ export default function Flux() {
     const data = (useFetch(`${API_LINK}discover/movie?api_key=${API_KEY}`));
     const data2 = (useFetch(`${API_LINK}discover/movie?api_key=${API_KEY}&page=2`));
 
-    useEffect(() => { 
-        setCurrentMovies(data) 
-    }, [data])
-
-    useEffect(() => { 
+    useEffect(() => {
         // Merging both FETCH Results
-        setCurrentMovies(prevValue => prevValue = data.concat(data2)) 
-    }, [data2])
+        setCurrentMovies((prevValue) => prevValue = [...data, ...data2]);
+    }, [data2]);
 
     const genreList = useFetchGenres('https://api.themoviedb.org/3/genre/movie/list?api_key=350845626c05bcf9e670b1135deffe7b');
-   
-    console.log(`Genres are: ${genreList}`);
 
     function addMovieFilter(id, movieGenres) {
-        setMoviesGenre(movieGenres)
-        setMovieFilter(id)
+        setMoviesGenre(movieGenres);
+        setMovieFilter(id);
+    }
+
+    function sortMoviesBy(sort) {
+        setSortMovies(sort);
     }
 
     function filterMovies() {
-        setCurrentMovies([])
-        fetchMovies(2)
-        
-        async function fetchMovies(functionCalls) {
-            for (let pageNumber = 0; pageNumber < functionCalls; pageNumber++){
-                const response = await fetch(`${API_LINK}discover/movie?api_key=${API_KEY}&with_genres=${movieFilter}&page=${pageNumber + 1}`)
-                const data = await response.json();
+        setCurrentMovies([]);
+        fetchMovies(2);
 
-                setCurrentMovies(prevValue => prevValue = [...prevValue, ...data.results])
-                setMovieFilterEnabled(true)
+        async function fetchMovies(functionCalls) {
+            for (let pageNumber = 0; pageNumber < functionCalls; pageNumber++) {
+                const response = await fetch(`${API_LINK}discover/movie?api_key=${API_KEY}&with_genres=${movieFilter}&sort_by=${sortMovies}&page=${pageNumber + 1}`)
+                const data = await response.json();
+                setCurrentMovies(prevValue => prevValue = [...prevValue, ...data.results]);
+                setMovieFilterEnabled(true);
             }
         }
     }
@@ -57,30 +55,27 @@ export default function Flux() {
             <DisplayHeroStatic
                 text = {{
                     title: 'Discover Flux',
-                    subtitle: 'Find your favorite movies.'
+                    subtitle: 'Find your favorite movies.',
                     }}
             />
-            { hasMovieFilterEnaled ? <DisplayHeadlineSmall title='Movies' moviesGenre={moviesGenre} /> : <DisplayHeadlineSmall title='Movies' /> }
-            
-            <FilterModule   
-                genres = {genreList} 
-                movieFilter = {addMovieFilter} 
-                filterMovies={filterMovies}
-            /> 
+            { hasMovieFilterEnaled ? <HeadlineSmall title='Movies' moviesGenre={moviesGenre} /> : <HeadlineSmall title='Movies' /> }
 
-            
-            { currentMovies[0] === undefined 
-                ? <SkeletonDisplayFluxPortrait/> 
+            <FilterModule
+                genres = {genreList}
+                movieFilter = {addMovieFilter}
+                filterMovies={filterMovies}
+                sortMovies={sortMoviesBy}
+            />
+
+            { currentMovies[0] === undefined
+                ? <SkeletonDisplayFluxPortrait/>
                 : null }
 
-            { currentMovies[0] !== undefined 
+            { currentMovies[0] !== undefined
                 ? <DisplayFluxPortrait movies = {currentMovies} 
                                        movieCategory = {movieFilter} 
-                   /> 
-                : console.log('Loading Movies...')}    
-
+                   />
+                : console.log('Loading Movies...')}
         </>
     );
 }
-
-    

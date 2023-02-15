@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 
 // 01 - Components
 import CarouselNavigation from './CarouselNavigation';
-import HeadlineSmall from '../../../sections/components/HeadlineSmall';
-import SkeletonCardLandscape from '../../../sections/skeleton/SkeletonCardLandscape';
-import MovieLandscape from '../../../sections/components/MovieLandscape';
+import HeadlineSmall from '../../../components/HeadlineSmall';
+import SkeletonCardLandscape from '../../../components/skeleton/SkeletonCardLandscape';
+import MovieLandscape from '../../../components/MovieLandscape';
 
 
 export default function Carousel({ carousel }) {
@@ -37,7 +37,7 @@ export default function Carousel({ carousel }) {
     });
 
     function disableSkeleton() {
-        setSkeletonEnabled(false)
+        setSkeletonEnabled(false);
     }
 
     const cards = ['1','2','3','4','5','6','7','8'];
@@ -45,13 +45,20 @@ export default function Carousel({ carousel }) {
     return (
         <section className="carousel">
             <div className="carousel-container wrapper mr00 card-container">
-                <HeadlineSmall  title = {carousel.title} />
+                <HeadlineSmall title = {carousel.title} />
                 { isSkeletonEnabled ?
                     <div className="card-scroll-frame"> { cards.map(card => <SkeletonCardLandscape/>) } </div> 
                     : null
                 }
                 <div className="card-scroll-frame">
-                    { window.innerWidth > 1024 ? <CarouselNavigation/> : null }
+                    { window.innerWidth > 1024 ?
+                            <CarouselNavigation selector={{
+                                skeleton: '.card-placeholder-landscape',
+                                card: '.card-landscape',
+                                id: 'buttons-landscape',
+                                }}
+                            />
+                            : null }
                     {renderMovies}
                 </div>
             </div>

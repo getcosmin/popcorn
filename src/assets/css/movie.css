@@ -251,11 +251,10 @@ CARD Scroller
 
 .card {
     scroll-snap-align: start;
-    min-width: min(288px, 80%);
+    min-width: min(288px, 40%);
 }
 .card-image, .flux-movie-img {
     transition: 300ms;
-    border-radius: 0.8rem;
     cursor: pointer;
     width: 100%;
     height: auto;
@@ -263,13 +262,17 @@ CARD Scroller
 .image-portrait {
     aspect-ratio: 2 / 3;
 }
-.card-image:hover, .flux-movie-img:hover {
-    outline: 2px solid var(--color-accent);
+.card-image:hover, .card-landscape:hover, .flux-movie-img:hover {
+    border: 2px solid var(--color-accent);
 }
 .card-image-placeholder, .card-placeholder-landscape {
     background-color: var(--color-primary-700);
     border-radius: var(--spacing-01);
     
+}
+.card-landscape, .card-image, .flux-movie-img {
+    border-radius: var(--spacing-01);
+    border: 2px solid transparent;
 }
 .card-placeholder-landscape {
     aspect-ratio: 16 / 9;
@@ -531,7 +534,7 @@ DISPLAY HERO Max
 -------------------- */
 .hero {
     margin-block: 0;
-    height: 70vh;
+    min-height: 70vh;
     grid-template-rows: 100%;
     grid-template-columns: 100%;
     display: grid;
@@ -568,6 +571,7 @@ DISPLAY HERO Max
 DISPLAY Hero Slider
 -------------------- */
 .hero-scroll-frame {
+    grid-area: 1/1;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     overflow-x: scroll;
@@ -592,14 +596,18 @@ DISPLAY Hero Slider
 .slider-headline {               
     display: grid;
     justify-items: center;
-    margin-bottom: var(--spacing-02);
+    margin-bottom: var(--spacing-04);
 }
 .hero-slider-pagination {
     display: flex;
+    position: relative;
+    z-index: 25;
     align-items: center;
     justify-content: center;
-    margin-top: calc(-1 * var(--spacing-04));
     gap: var(--spacing-01);
+    grid-area: 1/1;
+    align-self: end;
+    margin-bottom: var(--spacing-01);
 }
 .pagination-circle {
     background-color: var(--color-primary-600);
@@ -650,6 +658,8 @@ MOVIE Search Results
     grid-area: 1/1;
 }
 .landscape-header {
+    left: 2px;
+    cursor: pointer;
     padding: 0 var(--spacing-02);
     position: relative;
     z-index: 1;
@@ -834,6 +844,7 @@ DESKTOP CSS
         left: 0px;
     }
     .carousel-nav-button {
+        margin-top: 2px;
         position: absolute;
         z-index: 100;
         background-color: rgba(13, 15, 18, 0.4);
@@ -855,7 +866,7 @@ DESKTOP CSS
     }
     .carousel-nav-button:nth-child(2) {
         border-radius: 0 var(--spacing-01) var(--spacing-01) 0;
-        right: var(--spacing-04);
+        right: calc(var(--spacing-04) - 1px);
     }
     .navigation-links {
         flex-grow: 1;
@@ -866,7 +877,7 @@ DESKTOP CSS
         text-decoration: none;
         cursor: pointer;
         font-size: var(--text-normal);
-        color: var(--color-primary-200);
+        color: var(--color-primary-000);
     }
     .navigation-link:hover {
         color: var(--color-accent);
@@ -971,4 +982,7 @@ DESKTOP CSS
     background-color: var(--color-accent-400);
     fill: var(--color-primary-000);
     border: 1px solid var(--color-accent);
+}
+.no-scroll {
+    overflow-y: hidden;
 }

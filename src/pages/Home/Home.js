@@ -1,6 +1,6 @@
 
 import CarouselPortrait from './components/CarouselPortrait';
-import DisplayHeroSlider from '../../sections/DisplayHeroSlider';
+import DisplayHeroSlider from './components/DisplayHeroSlider';
 import CarouselLandscape from './components/CarouselLandscape';
 
 export default function Home() {

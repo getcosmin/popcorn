@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 // 01 - Components
-import RatingBadge from './components/sub-components/RatingBadge';
+import RatingBadge from './sub-components/RatingBadge';
 
 export default function MovieDisplay({ movieID }) {
     const [movieDetails, setMovieDetails] = useState();
@@ -31,9 +31,9 @@ export default function MovieDisplay({ movieID }) {
         }
     }, [movieID[0]]);
 
-    if (movieTrailer == undefined) return;
+    if (movieTrailer === undefined) return;
 
-    if (movieDetails == undefined) return;
+    if (movieDetails === undefined) return;
 
     const renderMovieGenres = movieDetails.genres.map((genre) => {
         return <span key={genre.id} className='card-genres'>{genre.name}</span>;

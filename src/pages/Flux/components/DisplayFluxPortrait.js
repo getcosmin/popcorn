@@ -1,13 +1,11 @@
 // 01 - Components
-import MoviesRender from '../../../sections/components/MoviesRender';
+import MoviesRender from './MoviesRender';
+import WrapperSection from '../../../components/sub-components/WrapperSection';
 
 export default function MovieList( movies ) {
     return (
-        <section>
-            <div className="wrapper">
-                <MoviesRender movies = {{...movies}} />
-            </div>
-        </section>
-
+        <WrapperSection>
+            <MoviesRender {...movies} />
+        </WrapperSection>
     );
 }

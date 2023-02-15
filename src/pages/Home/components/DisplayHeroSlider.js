@@ -2,9 +2,9 @@
 import { useEffect } from 'react';
 
 // 01 - Components
-import HeroSliderBody from './components/HeroSliderBody';
-import ButtonsHeroSlider from './components/sub-components/ButtonsHeroSlider';
-import MovieSliderText from '../assets/text/MovieSliderText';
+import HeroSliderBody from './HeroSliderBody';
+import ButtonsHeroSlider from '../../../components/sub-components/ButtonsHeroSlider';
+import MovieSliderText from '../../../assets/text/MovieSliderText';
 
 export default function DisplayHeroSlider( movie ) {
     useEffect(() => {
@@ -51,10 +51,10 @@ export default function DisplayHeroSlider( movie ) {
         <section className="hero">
             {window.innerWidth > 1024 && <ButtonsHeroSlider/>}
             <div className="hero-scroll-frame">
-                { MovieSliderText.map(movie =>  <HeroSliderBody movie = {{...movie}} /> )}
+                { MovieSliderText.map(movie =>  <HeroSliderBody movie = {{...movie}} key={movie.id}/> )}
             </div>
             <div className="hero-slider-pagination">
-                { MovieSliderText.map(movie => <span className="pagination-circle"></span> )}
+                { MovieSliderText.map(movie => <span className="pagination-circle" key={movie.id + 10}></span> )}
             </div>
         </section>
     );

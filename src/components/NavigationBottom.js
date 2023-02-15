@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // 01 - Components
-import BottomNavButton from './components/sub-components/BottomNavigationButton';
+import BottomNavButton from './sub-components/BottomNavigationButton';
 import iconHome from '../assets/icons/icon-home';
 import iconFlux from '../assets/icons/icon-flux';
 import iconBell from '../assets/icons/icon-bell';
@@ -24,7 +24,7 @@ export default function BottomNavigation(props) {
     });
     const [notification, setNotifications] = useState({
         src: iconBell,
-        title: 'Notifications',
+        title: 'Placeholder',
         isEnabled: false,
     });
 
@@ -42,21 +42,20 @@ export default function BottomNavigation(props) {
      }, []);
 
     useEffect(() => {
-        console.log(buttonActive);
         if (buttonActive === '/') {
-            setHome((prevValue) => prevValue = {...prevValue, isEnabled: true })
-            setFlux((prevValue) => prevValue = {...prevValue, isEnabled: false })
-            setNotifications(prevValue => prevValue = {...prevValue, isEnabled: false })
+            setHome((prevValue) => prevValue = {...prevValue, isEnabled: true})
+            setFlux((prevValue) => prevValue = {...prevValue, isEnabled: false})
+            setNotifications(prevValue => prevValue = {...prevValue, isEnabled: false})
         }
         if (buttonActive === '/Flux' || buttonActive === '/flux') {
-            setHome((prevValue) => prevValue = {...prevValue, isEnabled: false })
-            setFlux((prevValue) => prevValue = {...prevValue, isEnabled: true })
-            setNotifications((prevValue) => prevValue = {...prevValue, isEnabled: false })
+            setHome((prevValue) => prevValue = {...prevValue, isEnabled: false})
+            setFlux((prevValue) => prevValue = {...prevValue, isEnabled: true})
+            setNotifications((prevValue) => prevValue = {...prevValue, isEnabled: false})
         }
         if (buttonActive === '/Notifications' || buttonActive === '/notifications') {
-            setHome(prevValue => prevValue = {...prevValue, isEnabled: false })
-            setFlux(prevValue => prevValue = {...prevValue, isEnabled: false })
-            setNotifications(prevValue => prevValue = {...prevValue, isEnabled: true })
+            setHome(prevValue => prevValue = {...prevValue, isEnabled: false})
+            setFlux(prevValue => prevValue = {...prevValue, isEnabled: false})
+            setNotifications(prevValue => prevValue = {...prevValue, isEnabled: true})
         }
     }, [buttonActive]);
     // REFACTOR -- Toggles with UseEffect to render once button state changes 
@@ -99,7 +98,7 @@ export default function BottomNavigation(props) {
                             <span className="button-toggle-circle"></span>
                         </div>
                     </div>
-                    <span className="navigation-text">Light Mode</span>
+                    <span className="navigation-text">Placeholder</span>
                 </button>
             </div>
         </div>

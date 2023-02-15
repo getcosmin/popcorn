@@ -5,7 +5,9 @@ export default function HeroMedium({ content }) {
     return (
         <section className="hero-medium">
             <div className="wrapper">
-                <HeadlineMain content = {{...content}}/>
+                <HeadlineMain
+                    content={{...content}}
+                />
             </div>
         </section>
     );
