@@ -1,12 +1,16 @@
 // 00 - React
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 
 // 01 - Components
 import RatingBadge from './sub-components/RatingBadge';
+import ButtonClose from './sub-components/ButtonClose';
+import { AppContextMovie } from '../context/movieDisplayContext';
 
 export default function MovieDisplay({ movieID }) {
     const [movieDetails, setMovieDetails] = useState();
     const [movieTrailer, setMovieTrailer] = useState();
+    
+    const { closeMovieDisplayWindow } = useContext(AppContextMovie);
 
     useEffect(() => {
         fetchMovieDetails();
@@ -41,6 +45,9 @@ export default function MovieDisplay({ movieID }) {
 
     return (
         <section className="display">
+            <div className="display-controller">
+                <ButtonClose closeFunction={closeMovieDisplayWindow}></ButtonClose>
+            </div>
             <div className="movie-cinema">
                 <iframe className="display-hero" width="1920" height="1080"
                     src={`https://www.youtube.com/embed/${movieTrailer}?rel=0&version=3&autoplay=1&controls=0`}

@@ -1,6 +1,7 @@
-export default function MovieLandscape({ movie, openDisplay }) {
+export default function MovieLandscape({ movie, openDisplay, classList, eventAction }) {
+    console.log(eventAction)
     return movie ? (
-        <div className="movie-card-landscape card-landscape" id={movie.id} onClick={openDisplay}>
+        <div className={classList} id={movie.id} onClick={eventAction}>
             <header className="landscape-header">
                 <div>
                     <span>{movie.release_date}</span>

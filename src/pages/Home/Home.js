@@ -3,7 +3,7 @@ import CarouselPortrait from './components/CarouselPortrait';
 import DisplayHeroSlider from './components/DisplayHeroSlider';
 import CarouselLandscape from './components/CarouselLandscape';
 
-export default function Home() {
+export default function Home( ) {
   return (
     <>
         <DisplayHeroSlider

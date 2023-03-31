@@ -1,9 +1,12 @@
 
-
+import { useContext } from 'react';
 // 01 - Components
 import MovieLandscape from './MovieLandscape';
+import { AppContextMovie } from '../context/movieDisplayContext';
 
-export default function PageSearchResults({ movies, openDisplay }) {
+export default function PageSearchResults({ movies }) {
+    const { openMovieDisplay } = useContext(AppContextMovie);
+
     return movies ? (
         <>
         <div className="navbar-search-menu">
@@ -13,8 +16,9 @@ export default function PageSearchResults({ movies, openDisplay }) {
                         if (movie.backdrop_path !== null) {
                             return (
                                 <MovieLandscape
+                                    classList='movie-card card-landscape'
                                     key={movie.id}
-                                    openDisplay = {openDisplay}
+                                    eventAction = {openMovieDisplay}
                                     movie = {movie}
                                 />
                             );

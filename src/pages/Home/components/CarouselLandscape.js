@@ -1,16 +1,19 @@
 // 00 - React
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 
 // 01 - Components
 import CarouselNavigation from './CarouselNavigation';
 import HeadlineSmall from '../../../components/HeadlineSmall';
 import SkeletonCardLandscape from '../../../components/skeleton/SkeletonCardLandscape';
 import MovieLandscape from '../../../components/MovieLandscape';
+import { AppContextMovie } from '../../../context/movieDisplayContext';
 
 
 export default function Carousel({ carousel }) {
     const [movies, setMovies] = useState([]);
     const [isSkeletonEnabled, setSkeletonEnabled] = useState(true);
+
+    const { openMovieDisplay } = useContext(AppContextMovie);
 
     const API_LINK = 'https://api.themoviedb.org/3/discover/movie';
     const API_KEY = 'api_key=350845626c05bcf9e670b1135deffe7b';
@@ -31,6 +34,8 @@ export default function Carousel({ carousel }) {
         return (
             <MovieLandscape
                 key={movie.id}
+                eventAction={openMovieDisplay}
+                classList='movie-card card-landscape f80vw'
                 movie = {{...movie}}
             />
         );

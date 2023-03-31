@@ -15,7 +15,7 @@ export default function Footer() {
                     <span className="header-title">Show Cateogries</span>
                     <div
                         role="button"
-                        className="header-button"
+                        className="header-button center-button"
                         onClick={toggleCategories}>+
                         </div>
                 </div>

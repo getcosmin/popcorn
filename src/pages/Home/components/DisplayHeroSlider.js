@@ -16,24 +16,22 @@ export default function DisplayHeroSlider( movie ) {
             static scrollWindow = document.querySelector('.hero-scroll-frame');
 
             static checkScrollDirection() {
-                if (Slider.currentScrollPosition >= Slider.previousScrollPosition && 
-                    Slider.currentScrollPosition >= (Slider.imageSize * Slider.imagePosition))
-                    {
-                        Slider.imagePosition = Slider.imagePosition + 1;
-                        SliderProgress.updateProgress()
-                    } else if (Slider.currentScrollPosition < Slider.previousScrollPosition &&
-                    Slider.currentScrollPosition === (Slider.imageSize * (Slider.imagePosition - 2))) {
-                        Slider.imagePosition = Slider.imagePosition - 1;
-                        SliderProgress.updateProgress();
+                console.log(Slider.currentScrollPosition)
+                console.log(Slider.previousScrollPosition)
+                if (Slider.currentScrollPosition > Slider.previousScrollPosition) {
+                    Slider.imagePosition = Slider.currentScrollPosition / Slider.imageSize + 1;
+                    SliderProgress.updateProgress()
+                }
+                if (Slider.previousScrollPosition > Slider.currentScrollPosition) {
+                    Slider.imagePosition = Slider.currentScrollPosition / Slider.imageSize + 1;
+                    SliderProgress.updateProgress()
                 }
             }
         }
 
         Slider.scrollWindow.addEventListener('scroll', () => {
             Slider.currentScrollPosition = Slider.scrollWindow.scrollLeft;
-
             Slider.checkScrollDirection();
-
             Slider.previousScrollPosition = Slider.scrollWindow.scrollLeft;
         });
 

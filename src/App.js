@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { createPortal } from 'react-dom';
+import { AppContextMovie, MovieDisplayContext } from './context/movieDisplayContext';
 
 import './assets/css/movie.css';
 import './assets/css/movie.css';
@@ -10,9 +12,14 @@ import Notifications from './pages/Notifications';
 import Navigation from './components/Navigation';
 import NavigationBottom from './components/NavigationBottom';
 import Footer from './components/Footer';
+import DisplayMovie from './components/DisplayMovie';
 
 
 export default function App() {
+  const { openMovieDisplay, hasMovieDisplayEnabled, movieSearchID } = useContext(AppContextMovie);
+  console.log(openMovieDisplay)
+  console.log(hasMovieDisplayEnabled)
+
   useEffect(() => {
     console.log('closed');
     const bottomLinks = document.querySelectorAll('.bottom-navigation-link');
@@ -30,16 +37,21 @@ export default function App() {
 
   return (
       <>
-        <Navigation />
+        {hasMovieDisplayEnabled && createPortal(
+          <DisplayMovie
+            movieID={movieSearchID}
+        />
+        , document.querySelector('#root'))}
 
+        <Navigation />
         <Routes>
           <Route path='/' element = { <Home />} />
           <Route path='/flux' element = { <Flux />} />
           <Route path='/notifications' element = { <Notifications />} />
         </Routes>
-
         { window.innerWidth < 1024 ? <NavigationBottom /> : null }
         <Footer />
+        
       </>
   );
 }
