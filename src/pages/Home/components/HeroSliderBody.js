@@ -12,7 +12,12 @@ export default function HeroSliderBody({ movie }) {
                 <source media="(min-width: 1024px)" srcSet={movie.image.landscape} />
                 <source media="(max-width: 1023px)" srcSet={movie.image.portrait} />
                 <img className="hero-image-large" src={movie.image.landscape} alt={movie.title} />
-             </picture>
+            </picture>
+            <div className="fade-container">
+                <div className="fade1"></div>
+                <div className="fade2"></div>
+                <div className="fade3"></div>
+            </div>
         </div>
     );
 }

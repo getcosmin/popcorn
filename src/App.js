@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import { createPortal } from 'react-dom';
-import { AppContextMovie, MovieDisplayContext } from './context/movieDisplayContext';
+import { AppContextMovie } from './context/movieDisplayContext';
 
 import './assets/css/movie.css';
 import './assets/css/movie.css';

@@ -62,6 +62,7 @@ export default function Flux() {
 
             <FilterModule
                 genres = {genreList}
+                
                 movieFilter = {addMovieFilter}
                 filterMovies={filterMovies}
                 sortMovies={sortMoviesBy}
@@ -72,8 +73,8 @@ export default function Flux() {
                 : null }
 
             { currentMovies[0] !== undefined
-                ? <DisplayFluxPortrait movies = {currentMovies} 
-                                       movieCategory = {movieFilter} 
+                ? <DisplayFluxPortrait movies={currentMovies} 
+                                       movieCategory={movieFilter} 
                    />
                 : console.log('Loading Movies...')}
         </>

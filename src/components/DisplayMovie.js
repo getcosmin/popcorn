@@ -9,6 +9,7 @@ import { AppContextMovie } from '../context/movieDisplayContext';
 export default function MovieDisplay({ movieID }) {
     const [movieDetails, setMovieDetails] = useState();
     const [movieTrailer, setMovieTrailer] = useState();
+    console.log(movieDetails);
     
     const { closeMovieDisplayWindow } = useContext(AppContextMovie);
 
@@ -45,32 +46,44 @@ export default function MovieDisplay({ movieID }) {
 
     return (
         <section className="display">
-            <div className="display-controller">
-                <ButtonClose closeFunction={closeMovieDisplayWindow}></ButtonClose>
-            </div>
-            <div className="movie-cinema">
-                <iframe className="display-hero" width="1920" height="1080"
-                    src={`https://www.youtube.com/embed/${movieTrailer}?rel=0&version=3&autoplay=1&controls=0`}
-                    title="YouTube video player" frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write;
-                    encrypted-media; gyroscope; picture-in-picture"
-                     allowfullscreen>
-                </iframe>
-            </div>
-            <div className="display-nav wrapper">
-            </div>
-            <header className="display-headline wrapper">
-                <div>
-                    { RatingBadge(parseFloat(movieDetails.vote_average).toFixed(2)) }
-                    <h2 className="display-title">{movieDetails.title}</h2>
-                    <div className="display-genres">
-                       { renderMovieGenres }
-                    </div>
-                    <div className="display-body">
-                        <p className="body-text">{movieDetails.overview}</p>
-                    </div>
+            <div className="cinema-preview">
+                <div className="display-controller">
+                    <ButtonClose closeFunction={closeMovieDisplayWindow}></ButtonClose>
                 </div>
-            </header>
+                <div className="movie-cinema">
+                    <iframe className="display-hero" width="1920" height="1080"
+                        src={`https://www.youtube.com/embed/${movieTrailer}?rel=0&version=3&autoplay=1&controls=0`}
+                        title="YouTube video player" frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write;
+                        encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div className="overlay-container">
+                    <div className="cinema-overlay1"></div>
+                    <div className="cinema-overlay2"></div>
+                    <div className="cinema-overlay3"></div>
+                </div>
+                <header className="display-headline wrapper">
+                    <div>
+                        { RatingBadge(parseFloat(movieDetails.vote_average).toFixed(2)) }
+                        <h2 className="display-title">{movieDetails.title}</h2>
+                        <div className="display-genres">
+                            { renderMovieGenres }
+                        </div>
+                        <div className="display-body">
+                            <p className="body-text">{movieDetails.overview}</p>
+                        </div>
+                    </div>
+                </header>
+            </div>
+            <div className="cinema-body">
+
+            </div>
+            <div className="cinema-footer">
+
+            </div>
+
         </section>
     );
 }
